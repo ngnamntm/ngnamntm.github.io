@@ -805,6 +805,21 @@
   }
 
   async function pushPost(txt, imageFile, scope='local') {
+      // Kiểm tra ảnh trước khi upload
+      if (imageFile) {
+          // Kiểm tra định dạng
+          const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+          if (!allowedTypes.includes(imageFile.type)) {
+              alert('Chỉ chấp nhận ảnh JPG, PNG, GIF, WEBP.');
+              return;
+          }
+          // Kiểm tra kích thước (giới hạn 5MB)
+          if (imageFile.size > 5 * 1024 * 1024) {
+              alert('Ảnh quá lớn, vui lòng chọn ảnh dưới 5MB.');
+              return;
+          }
+      }
+
       const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
       const campus = scope === 'global' ? 'All' : currentUser.campus;
       
@@ -818,7 +833,10 @@
           let finalImageUrl = "";
           if(imageFile) {
               console.log("2. Phát hiện có ảnh! Đang đẩy ảnh lên Storage: ", imageFile.name);
-              const imageName = `posts/${Date.now()}_img`; 
+              // Tạo tên file duy nhất kèm phần mở rộng
+              const ext = imageFile.name.split('.').pop();
+              const uniqueId = Math.random().toString(36).substring(2, 15);
+              const imageName = `posts/${Date.now()}_${uniqueId}.${ext}`; 
               const storageRef = storage.ref().child(imageName); 
               await storageRef.put(imageFile); 
               console.log("3. Tải ảnh thành công! Đang lấy link ảnh công khai...");
@@ -841,13 +859,16 @@
           await db.collection("posts").add(newPost);
           console.log("5. 🎉 HOÀN TẤT ĐĂNG BÀI!");
 
+          // Reset form
           document.getElementById('post-content').value = "";
-          if(document.getElementById('post-image')) {
-              document.getElementById('post-image').value = "";
+          const fileInput = document.getElementById('post-image');
+          if (fileInput) {
+              fileInput.value = "";
+              // Reset preview
               const previewCont = document.getElementById('post-image-preview-container');
-              if(previewCont) previewCont.classList.add('hidden');
+              if (previewCont) previewCont.classList.add('hidden');
               const previewImg = document.getElementById('post-image-preview');
-              if(previewImg) previewImg.src = "";
+              if (previewImg) previewImg.src = "";
           }
           if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
           document.getElementById('post-modal').classList.add('hidden');
