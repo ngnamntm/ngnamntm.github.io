@@ -205,6 +205,7 @@
               <p class="text-slate-600 mb-6">Tổng hợp kỹ năng sống cần thiết cho sinh viên FPTU.</p>
               
               <div class="grid gap-8">
+                  <!-- Categories accordion or cards -->
                   <div class="space-y-4">
                       <h3 class="text-2xl font-semibold text-slate-800">1. Sinh tồn Tài chính</h3>
                       <ul class="list-disc list-inside text-slate-600">
@@ -239,6 +240,7 @@
                   </div>
               </div>
               
+              <!-- Highlight Cards -->
               <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 flex flex-col items-center text-center">
                       <div class="text-4xl">🎒</div>
@@ -284,6 +286,7 @@
               <p class="text-slate-600 mb-2">Sắp xếp công việc theo mức độ quan trọng, gấp gáp và hạn chót - Làm điều quan trọng trước</p>
               <p class="text-xs text-slate-500 mb-8 italic">📣 Nhập hạn chót và cấp quyền thông báo để nhận nhắc nhở đẩy khi deadline sắp đến (3 tiếng và 1 tiếng trước).</p>
               
+              <!-- Input Section -->
               <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8">
                   <h3 class="font-bold text-lg text-slate-800 mb-4">Thêm công việc</h3>
                   <div class="space-y-4">
@@ -298,6 +301,7 @@
                       </div>
 
                       <div class="grid grid-cols-2 gap-6">
+                          <!-- Importance -->
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Quan trọng?</label>
                               <div class="flex gap-3">
@@ -306,6 +310,7 @@
                               </div>
                           </div>
                           
+                          <!-- Urgency -->
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Gấp gáp?</label>
                               <div class="flex gap-3">
@@ -321,7 +326,9 @@
                   </div>
               </div>
               
+              <!-- 4 Quadrants -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Q1: Gấp + Quan trọng -->
                   <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-red-200">
                           <h3 class="text-lg font-bold text-red-700 flex items-center gap-2">
@@ -333,6 +340,7 @@
                       <div id="quad-1" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
+                  <!-- Q2: Ko gấp + Quan trọng -->
                   <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-blue-200">
                           <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2">
@@ -344,6 +352,7 @@
                       <div id="quad-2" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
+                  <!-- Q3: Gấp + Ko quan trọng -->
                   <div class="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-yellow-200">
                           <h3 class="text-lg font-bold text-yellow-700 flex items-center gap-2">
@@ -355,6 +364,7 @@
                       <div id="quad-3" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
+                  <!-- Q4: Ko gấp + Ko quan trọng -->
                   <div class="bg-slate-100 border-2 border-slate-300 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-slate-300">
                           <h3 class="text-lg font-bold text-slate-700 flex items-center gap-2">
@@ -489,6 +499,7 @@
                       <span class="text-slate-500 font-medium">Thêm ảnh vào bài viết</span><i class="fa-solid fa-image text-green-500 text-xl"></i>
                   </label>
                   <input type="file" id="post-image" accept="image/*" class="hidden" />
+                  <!-- preview thumbnail shown after user selects a file -->
                   <div id="post-image-preview-container" class="mt-4 hidden">
                       <img id="post-image-preview" src="" class="max-h-40 rounded-xl cursor-pointer" alt="Ảnh đã chọn" />
                   </div>
@@ -498,31 +509,13 @@
       </div>
   </div>
 
+  <!-- full screen image viewer overlay -->
   <div id="image-viewer" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[300] cursor-pointer">
       <img src="" class="max-w-full max-h-full rounded" alt="" />
       <button class="absolute top-4 right-4 text-white text-3xl" onclick="closeImageViewer(event)">&times;</button>
   </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-
 <script>
-// --- KHỞI TẠO FIREBASE ---
-const firebaseConfig = {
-  apiKey: "AIzaSyCjgp2ZeF59c37xhHXjL_bA_s0mcIntTHA",
-  authDomain: "fptu-survival.firebaseapp.com",
-  projectId: "fptu-survival",
-  storageBucket: "fptu-survival.firebasestorage.app",
-  messagingSenderId: "73576526351",
-  appId: "1:73576526351:web:4294e034341470c041e97a",
-  measurementId: "G-VLEPPW72V5"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
-
   // --- DATA ---
   const specs = {
       'IT_FACULTY': [{code:'SE',name:'Kỹ thuật phần mềm (SE)'}, {code:'IA',name:'An toàn thông tin (IA)'}, {code:'AI',name:'Trí tuệ nhân tạo (AI)'}, {code:'IC',name:'Vi mạch (IC)'}, {code:'IoT',name:'Internet vạn vật (IoT)'}],
@@ -558,8 +551,31 @@ const storage = firebase.storage();
   ];
 
   let posts = [
-      // Bài viết mồi, sẽ bị đè khi lấy dữ liệu thật từ Firebase
-      { id: 1, user: "Hệ thống", avt: "https://i.pravatar.cc/150?img=5", campus: "Đà Nẵng", content: "Đang tải dữ liệu...", img: "", likes: 0, cmts: [] }
+      { id: 1, user: "Minh Tuấn", avt: "https://i.pravatar.cc/150?img=5", campus: "Đà Nẵng", content: "Review Cơm tấm 35k cổng sau Đà Nẵng: Sườn to, cơm nhiều. 9/10 nhé ae!", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500", likes: 12, cmts: [{u:"Nam",t:"Xin địa chỉ bác ơi"}] },
+      { id: 2, user: "Confession HN", avt: "https://i.pravatar.cc/150?img=8", campus: "Hà Nội", content: "Có ai nhặt được thẻ xe ở nhà xe Beta Hoà Lạc không ạ? Cho em xin chuộc 😭", img: "", likes: 5, cmts: [] },
+      { id: 3, user: "Hải Yến", avt: "https://i.pravatar.cc/150?img=12", campus: "HCM", content: "Quận 9 chiều nay mưa to, các bạn đi học nhớ mang áo mưa nhé!", img: "", likes: 24, cmts: [] },
+      { id: 4, user: "Bảo Ngọc", avt: "https://i.pravatar.cc/150?img=15", campus: "Quy Nhơn", content: "AI Valley Quy Nhơn đẹp thật sự các bác ạ 😍", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500", likes: 45, cmts: [] },
+      { id: 5, user: "Thành Đạt", avt: "https://i.pravatar.cc/150?img=20", campus: "Cần Thơ", content: "Cần tìm team đá bóng sân FPT Cần Thơ chiều nay. Thiếu 1 thủ môn.", img: "", likes: 2, cmts: [] },
+      { id: 6, user: "Linh Đan", avt: "https://i.pravatar.cc/150?img=25", campus: "Đà Nẵng", content: "Có ai biết review trung tâm photocopy ở gần KTX B không? Cần photocopy bài tập thôi.", img: "", likes: 8, cmts: [{u:"Mai",t:"Có tiệm ở chợ Hàn đủ tiện"}] },
+      { id: 7, user: "Khánh Phương", avt: "https://i.pravatar.cc/150?img=30", campus: "Hà Nội", content: "Sáng nay thi PRF192, mấy bạn làm bài bao lâu? Đề mình thấy khó qua 🥺", img: "", likes: 19, cmts: [{u:"Tú",t:"Đề này dễ hơn lần trước mà"},{u:"Phát",t:"Mình 45 phút xong"}] },
+      { id: 8, user: "Tuấn Anh", avt: "T", campus: "HCM", content: "Alert: Thẻ xe chiều nay bị hư, các bạn nhớ có thẻ dự phòng hoặc có tiền lẻ để mua vé tạm thời 🚗", img: "", likes: 34, cmts: [] },
+      { id: 9, user: "Minh Thu", avt: "https://i.pravatar.cc/150?img=22", campus: "Quy Nhơn", content: "Lần đầu tiên thấy bình minh ở cầu cảng Quy Nhơn 🌅 Đẹp quá, ai cũng phải đi xem lần nữa ạ!", img: "https://images.unsplash.com/photo-1495888714795-8a5f62e5a6f4?w=500", likes: 78, cmts: [{u:"Như",t:"Háng, phải đi chiều nay"}] },
+      { id: 10, user: "Hoàng Nam", avt: "https://i.pravatar.cc/150?img=18", campus: "Cần Thơ", content: "Ai có group chat môn MAD101 không? Muốn gia nhập để hỏi bài chập chứng 😅", img: "", likes: 11, cmts: [{u:"Duyên",t:"Có, tao mời link"}] },
+      { id: 11, user: "Thanh Hương", avt: "https://i.pravatar.cc/150?img=23", campus: "Đà Nẵng", content: "Mấy bạn có sử dụng Notion để quản lý task không? Chia sẻ template với mình cái nha 📝", img: "", likes: 15, cmts: [] },
+      { id: 12, user: "Quốc Huy", avt: "Q", campus: "Hà Nội", content: "Recruitment: Cần 2 backend developer cho startup. PM mình nếu quan tâm! Mức lương từ 8-12tr/tháng.", img: "", likes: 42, cmts: [{u:"Sơn",t:"Gửi CV rồi"},] },
+      { id: 13, user: "Bích Ngân", avt: "https://i.pravatar.cc/150?img=27", campus: "HCM", content: "Chuyên ngành gì của FPT khó nhất? Nghe nói VLSI sát thương lắm 😨", img: "", likes: 56, cmts: [{u:"Hướng",t:"VLSI khó nhưng thích hợp với những ai yêu thích thiết kế"},{u:"Long",t:"IC Design cũng không thua kém"}] },
+      { id: 14, user: "An Khôi", avt: "https://i.pravatar.cc/150?img=35", campus: "Quy Nhơn", content: "Hôm nay free, có ai muốn đi chơi ở Tây Nguyên không? 🏔️", img: "", likes: 7, cmts: [] },
+      { id: 15, user: "Minh Vũ", avt: "https://i.pravatar.cc/150?img=28", campus: "Cần Thơ", content: "Ai biết cách nộp hỗ trợ khoảng 2 triệu cho sinh viên khó khăn? Vừa mới biết có chương trình này 🤔", img: "", likes: 22, cmts: [{u:"Phi",t:"Lên phòng học sinh phòng làm việc đó là có danh sách"}] },
+      { id: 16, user: "Đức Trung", avt: "https://i.pravatar.cc/150?img=33", campus: "Đà Nẵng", content: "Setup workspace tại KTX xong! Dân lập trình mà home office không có monitor thì toán 🖥️😅", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500", likes: 91, cmts: [{u:"Linh",t:"Workspace đẹp thiệt"}] },
+      { id: 17, user: "FPTU Careers", avt: "https://i.pravatar.cc/150?img=40", campus: "All", scope: "global", content: "🎉 Tuyên bố: Hơn 500 sinh viên FPT được nhận việc làm sau tốt nghiệp kỳ này! Chúc mừng các bạn! #fpt #career #hiring", img: "", likes: 234, cmts: [{u:"Minh",t:"Tuyệt vời!"},{u:"Hân",t:"Mik cũng nằm trong con số đó ^^"}] },
+      { id: 18, user: "Tech Hub Vietnam", avt: "https://i.pravatar.cc/150?img=41", campus: "All", scope: "global", content: "Khóa học miễn phí: 'Mastering AI & Machine Learning' bắt đầu tuần tới! Dành cho toàn bộ sinh viên FPT. Link đăng ký: fptu.edu.vn/ai-course", img: "", likes: 156, cmts: [{u:"Phương",t:"Vừa đăng ký rồi"}] },
+      { id: 19, user: "FPT Scholarship", avt: "https://i.pravatar.cc/150?img=42", campus: "All", scope: "global", content: "Học bổng Toàn phần 2 năm cho sinh viên xuất sắc kỳ này. Hạn nộp: 28/2/2026. Yêu cầu: GPA ≥ 3.5, tham gia 2 hoạt động ngoại khóa.", img: "", likes: 89, cmts: [{u:"Dung",t:"Sắp hết hạn rồi, mau nộp"}] },
+      { id: 20, user: "FPT Sports Club", avt: "https://i.pravatar.cc/150?img=43", campus: "All", scope: "global", content: "⚽ Giải bóng đá nội bộ FPT 2026 - Bắt đầu đăng ký! Các đội từ 5 cơ sở được phép tham gia. Giải nhất: 20 triệu VND 🏆", img: "", likes: 127, cmts: [{u:"Tuấn",t:"Đợi đội mình đăng ký"},{u:"Hòa",t:"Năm nay mình sẽ vô địch!"}] },
+      { id: 21, user: "FPT Life Magazine", avt: "https://i.pravatar.cc/150?img=44", campus: "All", scope: "global", content: "📚 Bài viết: 'Cân bằng cuộc sống sinh viên công nghệ' - Lời khuyên từ các mentor FPT. Đọc đầy đủ trên blog FPT!", img: "", likes: 203, cmts: [{u:"Linh",t:"Useful tips!"},{u:"An",t:"Sẽ áp dụng ngay"}] },
+      { id: 22, user: "FPT Community Events", avt: "https://i.pravatar.cc/150?img=45", campus: "All", scope: "global", content: "🎪 Tháng 3: Festival công nghệ toàn FPT - Hackathon, workshop, networking. Các bạn sắp sẵn sàng chưa? 💻", img: "", likes: 178, cmts: [{u:"Sơn",t:"Excited!"}] },
+      { id: 23, user: "Internship Hub", avt: "https://i.pravatar.cc/150?img=46", campus: "All", scope: "global", content: "💼 Cơ hội internship: Google, Microsoft, Samsung mở đơn tuyển ứng viên từ FPT. Hạn chế chỗ, apply ASAP! 🚀", img: "", likes: 312, cmts: [{u:"Phát",t:"Vừa submit application"},{u:"Hương",t:"Chúc mừng bạn!"}] },
+      { id: 24, user: "Mental Health Support", avt: "https://i.pravatar.cc/150?img=47", campus: "All", scope: "global", content: "🧠 Tâm lý học viên: Thi cử, áp lực tiền bạc, mối quan hệ... Hãy tìm đến phòng Đoàn-Hội để được tư vấn miễn phí! Luôn sẵn sàng lắng nghe. 💙", img: "", likes: 256, cmts: [{u:"Mai",t:"Cảm ơn FPT đã quan tâm"},] },
+      { id: 25, user: "FPT Alumni Success", avt: "https://i.pravatar.cc/150?img=48", campus: "All", scope: "global", content: "🌟 Nhân vật tuần: Nguyễn Minh Phát - Cựu sinh viên FPT, hiện CTO tại Startup Unicorn Việt Nam. Đọc câu chuyện truyền cảm hứng của anh ấy!", img: "", likes: 445, cmts: [{u:"Tú",t:"Mục tiêu của tui"},{u:"Huyền",t:"Amazing!"}] }
   ];
 
   let currentUser = { name: "", campus: "", faculty: "" }; 
@@ -653,8 +669,6 @@ document.addEventListener('keydown', e=>{
           filterFeed('local');
           // capture initial state
           saveHistory();
-          // Kích hoạt lắng nghe database
-          listenToPosts();
       } else { alert("Vui lòng điền đủ Tên và MSSV!"); }
   }
 
@@ -772,36 +786,32 @@ document.addEventListener('keydown', e=>{
             <div class="flex gap-4 mb-3">${avatarHtml}<div><h5 class="font-bold text-base text-slate-900 flex items-center">${p.user} ${badge}</h5><p class="text-xs text-slate-400">Vừa xong</p></div></div>
             <p class="text-base text-slate-800 leading-relaxed break-words">${p.content}</p>${imgHtml}
             <div class="flex gap-8 mt-4 pt-4 border-t border-slate-50 text-sm font-bold text-slate-500">
-                <button onclick="likePost('${p.id}', this)" class="hover:text-red-500 flex items-center gap-2 transition"><i class="fa-regular fa-heart text-xl"></i> <span id="like-count-${p.id}">${p.likes}</span></button>
-                <button onclick="toggleComment('${p.id}')" class="hover:text-blue-500 flex items-center gap-2 transition"><i class="fa-regular fa-comment text-xl"></i> Bình luận</button>
+                <button onclick="likePost(${p.id}, this)" class="hover:text-red-500 flex items-center gap-2 transition"><i class="fa-regular fa-heart text-xl"></i> <span id="like-count-${p.id}">${p.likes}</span></button>
+                <button onclick="toggleComment(${p.id})" class="hover:text-blue-500 flex items-center gap-2 transition"><i class="fa-regular fa-comment text-xl"></i> Bình luận</button>
             </div>
             <div id="cmt-box-${p.id}" class="hidden mt-4 pt-2 border-t border-slate-50">
                 <div id="cmt-list-${p.id}" class="space-y-2 mb-3">${commentsHtml}</div>
-                <div class="flex gap-3"><input id="cmt-input-${p.id}" class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-orange-300 transition" placeholder="Viết bình luận..." onkeydown="if(event.key==='Enter') addComment('${p.id}')"><button onclick="addComment('${p.id}')" class="text-blue-600 font-bold text-sm px-3 hover:bg-blue-50 rounded-full">Gửi</button></div>
+                <div class="flex gap-3"><input id="cmt-input-${p.id}" class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-orange-300 transition" placeholder="Viết bình luận..." onkeydown="if(event.key==='Enter') addComment(${p.id})"><button onclick="addComment(${p.id})" class="text-blue-600 font-bold text-sm px-3 hover:bg-blue-50 rounded-full">Gửi</button></div>
             </div>`;
           container.appendChild(div);
       });
   }
 
   function likePost(id, btn) {
-      // NOTE: Khi chuyển qua database, tính năng Like này nên được bắn API update lại lên Firebase. 
-      // Hiện tại code chỉ update tạm trên màn hình (UI).
-      const p = posts.find(x => x.id == id);
-      if(!p) return;
+      const p = posts.find(x => x.id === id);
       const icon = btn.querySelector('i');
       const span = btn.querySelector('span');
       if (icon.classList.contains('fa-regular')) { icon.classList.replace('fa-regular', 'fa-solid'); btn.classList.add('text-red-500'); p.likes++; } 
       else { icon.classList.replace('fa-solid', 'fa-regular'); btn.classList.remove('text-red-500'); p.likes--; }
       span.innerText = p.likes;
+      saveHistory();
   }
   function toggleComment(id) { document.getElementById(`cmt-box-${id}`).classList.toggle('hidden'); }
   function addComment(id) {
-      // NOTE: Tương tự như likePost, Comment nên được update lên list Firebase.
       const input = document.getElementById(`cmt-input-${id}`);
       const text = input.value.trim();
       if (!text) return;
-      const p = posts.find(x => x.id == id);
-      if(!p) return;
+      const p = posts.find(x => x.id === id);
       p.cmts.push({u: currentUser.name, t: text});
       const list = document.getElementById(`cmt-list-${id}`);
       const newCmt = document.createElement('div');
@@ -809,6 +819,7 @@ document.addEventListener('keydown', e=>{
       newCmt.innerHTML = `<b>${currentUser.name}:</b> ${text}`;
       list.appendChild(newCmt);
       input.value = "";
+      saveHistory();
   }
   function addPost() {
       const txt = document.getElementById('post-content').value.trim();
@@ -864,94 +875,24 @@ document.addEventListener('keydown', e=>{
   }
   // clicking outside the image (on overlay) also closes
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
-
-// --- HÀM ĐĂNG BÀI LÊN FIREBASE ---
-async function pushPost(txt, imgUrl, scope='local') {
-    const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
-    const campus = scope === 'global' ? 'All' : currentUser.campus;
-    
-    // Đổi chữ ở nút đăng để báo cho người dùng đang xử lý
-    const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
-    const oldBtnText = postBtn.innerText;
-    postBtn.innerText = "Đang xử lý...";
-    postBtn.disabled = true;
-
-    try {
-        let finalImageUrl = "";
-        
-        // Nếu bài viết có ảnh, đẩy ảnh lên Firebase Storage trước
-        if(imgUrl) {
-            const imageName = `posts/${Date.now()}_img.jpg`;
-            const storageRef = storage.ref().child(imageName);
-            // Upload ảnh dạng base64
-            await storageRef.putString(imgUrl, 'data_url');
-            // Lấy đường link public của ảnh sau khi up xong
-            finalImageUrl = await storageRef.getDownloadURL();
-        }
-
-        // Đóng gói dữ liệu bài viết
-        const newPost = {
-            user: currentUser.name,
-            avt: avatarValue,
-            campus: campus,
-            scope: scope,
-            content: txt,
-            img: finalImageUrl, 
-            likes: 0,
-            cmts: [],
-            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Lấy giờ chuẩn của máy chủ
-        };
-
-        // Bắn dữ liệu lên kho chứa 'posts' của Firestore
-        await db.collection("posts").add(newPost);
-
-        // Đăng xong thì dọn dẹp form (Reset UI)
-        document.getElementById('post-content').value = "";
-        if(document.getElementById('post-image')) {
-            document.getElementById('post-image').value = "";
-            const previewCont = document.getElementById('post-image-preview-container');
-            if(previewCont) previewCont.classList.add('hidden');
-            const previewImg = document.getElementById('post-image-preview');
-            if(previewImg) previewImg.src = "";
-        }
-        if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
-        document.getElementById('post-modal').classList.add('hidden');
-
-    } catch (error) {
-        console.error("Lỗi:", error);
-        alert("Có lỗi xảy ra khi đăng bài: " + error.message);
-    } finally {
-        postBtn.innerText = oldBtnText;
-        postBtn.disabled = false;
-    }
-}
-
-// --- HÀM LẮNG NGHE BÀI VIẾT (REAL-TIME) TỪ FIREBASE ---
-function listenToPosts() {
-    // Kéo dữ liệu từ 'posts', sắp xếp bài mới nhất lên đầu
-    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-        posts = []; // Xoá mảng data tĩnh cũ
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-            posts.push({
-                id: doc.id, // ID thật của Firebase
-                user: data.user,
-                avt: data.avt,
-                campus: data.campus,
-                scope: data.scope,
-                content: data.content,
-                img: data.img,
-                likes: data.likes || 0,
-                cmts: data.cmts || []
-            });
-        });
-        
-        // Vẽ lại bảng tin
-        filterFeed(currentFeedType); 
-    }, (error) => {
-        console.error("Lỗi khi tải dữ liệu:", error);
-    });
-}
+  function pushPost(txt, imgUrl, scope='local') {
+      const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+      const campus = scope === 'global' ? 'All' : currentUser.campus;
+      posts.unshift({id:Date.now(), user:currentUser.name, avt:avatarValue, campus, scope, content:txt, img:imgUrl, likes:0, cmts:[]});
+      document.getElementById('post-content').value = "";
+      if(document.getElementById('post-image')) {
+          document.getElementById('post-image').value = "";
+          // hide preview thumbnail when resetting
+          const previewCont = document.getElementById('post-image-preview-container');
+          if(previewCont) previewCont.classList.add('hidden');
+          const previewImg = document.getElementById('post-image-preview');
+          if(previewImg) previewImg.src = "";
+      }
+      if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
+      document.getElementById('post-modal').classList.add('hidden');
+      // refresh feed based on scope selected
+      if(scope === 'global') filterFeed('global'); else filterFeed('local');
+  }
 
   // --- CALC & CHECK ---
   function toggleModal(id) { document.getElementById('modal-' + id).classList.toggle('hidden'); }
@@ -1089,7 +1030,6 @@ function listenToPosts() {
       const starters = document.getElementById('chat-starters');
       if (starters) starters.style.display = 'none';
       const box = document.getElementById('chat-messages');
-      
       // User Message
       box.innerHTML += `<div class="flex gap-4 flex-row-reverse animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-user"></i></div><div class="bg-orange-600 text-white p-4 rounded-3xl rounded-tr-none shadow text-base max-w-[85%] break-words">${text}</div></div>`;
       inp.value = "";
@@ -1106,7 +1046,10 @@ function listenToPosts() {
 
       try {
           // --- CẤU HÌNH ---
+          // Key của bạn (Giữ nguyên)
           const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks"; 
+          
+          // 👇 THAY ĐỔI QUAN TRỌNG: Dùng 'gemini-2.5-flash' (Có trong danh sách của bạn)
           const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
           
           const context = `Bạn là sinh viên FPTU. Trả lời ngắn gọn, thân thiện, hài hước. User hỏi: ${text}`;
