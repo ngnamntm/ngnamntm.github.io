@@ -821,25 +821,21 @@ document.addEventListener('keydown', e=>{
       input.value = "";
       saveHistory();
   }
-  function addPost() {
+ function addPost() {
       const txt = document.getElementById('post-content').value.trim();
       const scope = document.getElementById('post-scope').value || 'local';
       if(!txt) return;
-      // read image if selected
+      
       const fileInput = document.getElementById('post-image');
-      let imgUrl = "";
-      const doPush = () => pushPost(txt, imgUrl, scope);
+      let selectedFile = null;
+      
+      // Lấy trực tiếp file gốc thay vì biến thành base64
       if(fileInput && fileInput.files && fileInput.files[0]) {
-          const file = fileInput.files[0];
-          const reader = new FileReader();
-          reader.onload = function(e) {
-              imgUrl = e.target.result;
-              doPush();
-          };
-          reader.readAsDataURL(file);
-      } else {
-          doPush();
+          selectedFile = fileInput.files[0];
       }
+      
+      // Bắn file thẳng sang hàm pushPost
+      pushPost(txt, selectedFile, scope);
   }
 
   // show preview on file selection inside modal
@@ -875,24 +871,61 @@ document.addEventListener('keydown', e=>{
   }
   // clicking outside the image (on overlay) also closes
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
-  function pushPost(txt, imgUrl, scope='local') {
-      const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
-      const campus = scope === 'global' ? 'All' : currentUser.campus;
-      posts.unshift({id:Date.now(), user:currentUser.name, avt:avatarValue, campus, scope, content:txt, img:imgUrl, likes:0, cmts:[]});
-      document.getElementById('post-content').value = "";
-      if(document.getElementById('post-image')) {
-          document.getElementById('post-image').value = "";
-          // hide preview thumbnail when resetting
-          const previewCont = document.getElementById('post-image-preview-container');
-          if(previewCont) previewCont.classList.add('hidden');
-          const previewImg = document.getElementById('post-image-preview');
-          if(previewImg) previewImg.src = "";
-      }
-      if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
-      document.getElementById('post-modal').classList.add('hidden');
-      // refresh feed based on scope selected
-      if(scope === 'global') filterFeed('global'); else filterFeed('local');
-  }
+ async function pushPost(txt, imageFile, scope='local') {
+    const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+    const campus = scope === 'global' ? 'All' : currentUser.campus;
+    
+    const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
+    const oldBtnText = postBtn.innerText;
+    postBtn.innerText = "Đang tải ảnh lên..."; // Báo hiệu quá trình up ảnh
+    postBtn.disabled = true;
+
+    try {
+        let finalImageUrl = "";
+        
+        // Dùng phương thức .put() để up thẳng file gốc lên Storage
+        if(imageFile) {
+            // Thay đổi đuôi file cho an toàn
+            const imageName = `posts/${Date.now()}_img`; 
+            const storageRef = storage.ref().child(imageName);
+            await storageRef.put(imageFile); // Cập nhật quan trọng nhất ở đây
+            finalImageUrl = await storageRef.getDownloadURL();
+        }
+
+        const newPost = {
+            user: currentUser.name,
+            avt: avatarValue,
+            campus: campus,
+            scope: scope,
+            content: txt,
+            img: finalImageUrl, 
+            likes: 0,
+            cmts: [],
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        await db.collection("posts").add(newPost);
+
+        // Reset lại form
+        document.getElementById('post-content').value = "";
+        if(document.getElementById('post-image')) {
+            document.getElementById('post-image').value = "";
+            const previewCont = document.getElementById('post-image-preview-container');
+            if(previewCont) previewCont.classList.add('hidden');
+            const previewImg = document.getElementById('post-image-preview');
+            if(previewImg) previewImg.src = "";
+        }
+        if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
+        document.getElementById('post-modal').classList.add('hidden');
+
+    } catch (error) {
+        console.error("Lỗi:", error);
+        alert("Có lỗi xảy ra khi đăng bài: " + error.message);
+    } finally {
+        postBtn.innerText = oldBtnText;
+        postBtn.disabled = false;
+    }
+}
 
   // --- CALC & CHECK ---
   function toggleModal(id) { document.getElementById('modal-' + id).classList.toggle('hidden'); }
@@ -1262,3 +1295,4 @@ document.addEventListener('keydown', e=>{
 </script>
 </body>
 </html>
+
