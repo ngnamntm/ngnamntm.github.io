@@ -503,9 +503,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script>
-  // --- KHỞI TẠO FIREBASE ---
+  // --- KHỞI TẠO FIREBASE VỚI CONFIG MỚI ---
   const firebaseConfig = {
-      apiKey: "AIzaSyCjgp2ZeF59c37xhHXjL_bA_s0mcIntTHA",
+      apiKey: "AIzaSyCjgp2ZeF59c37xhHXjl_bA_s0mcIntTHA",
       authDomain: "fptu-survival.firebaseapp.com",
       projectId: "fptu-survival",
       storageBucket: "fptu-survival.firebasestorage.app",
@@ -514,8 +514,15 @@
       measurementId: "G-VLEPPW72V5"
   };
 
+  // Khởi tạo app
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
+  
+  // (Các phần code Data và hàm của bạn tiếp tục ở ngay dưới dòng này...)
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  </script>
 
   // --- DATA ---
   const specs = {
@@ -1265,5 +1272,6 @@ let posts = [
   </script>
 </body>
 </html>
+
 
 
