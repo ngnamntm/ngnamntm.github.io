@@ -517,7 +517,7 @@
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-
+  const storage = firebase.storage();
   // --- DATA ---
   const specs = {
       'IT_FACULTY': [{code:'SE',name:'Kỹ thuật phần mềm (SE)'}, {code:'IA',name:'An toàn thông tin (IA)'}, {code:'AI',name:'Trí tuệ nhân tạo (AI)'}, {code:'IC',name:'Vi mạch (IC)'}, {code:'IoT',name:'Internet vạn vật (IoT)'}],
@@ -840,11 +840,12 @@
 
       try {
           let finalImageUrl = "";
-          if(imageFile) {
-              const imageName = `posts/${Date.now()}_img`; 
-              const storageRef = firebase.storage().ref().child(imageName); 
-              await storageRef.put(imageFile); 
-              finalImageUrl = await storageRef.getDownloadURL();
+        if(imageFile) {
+            const imageName = `posts/${Date.now()}_img`; 
+            const storageRef = storage.ref().child(imageName); 
+            await storageRef.put(imageFile); 
+            finalImageUrl = await storageRef.getDownloadURL();
+        };
           }
 
           const newPost = {
@@ -1245,6 +1246,7 @@
   </script>
 </body>
 </html>
+
 
 
 
