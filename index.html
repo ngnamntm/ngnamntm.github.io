@@ -518,6 +518,7 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const storage = firebase.storage();
+
   // --- DATA ---
   const specs = {
       'IT_FACULTY': [{code:'SE',name:'Kỹ thuật phần mềm (SE)'}, {code:'IA',name:'An toàn thông tin (IA)'}, {code:'AI',name:'Trí tuệ nhân tạo (AI)'}, {code:'IC',name:'Vi mạch (IC)'}, {code:'IoT',name:'Internet vạn vật (IoT)'}],
@@ -550,35 +551,8 @@
       "https://i.pravatar.cc/150?img=20"
   ];
 
-  let posts = [
-      { id: 1, user: "Minh Tuấn", avt: "https://i.pravatar.cc/150?img=5", campus: "Đà Nẵng", content: "Review Cơm tấm 35k cổng sau Đà Nẵng: Sườn to, cơm nhiều. 9/10 nhé ae!", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500", likes: 12, cmts: [{u:"Nam",t:"Xin địa chỉ bác ơi"}] },
-      { id: 2, user: "Confession HN", avt: "https://i.pravatar.cc/150?img=8", campus: "Hà Nội", content: "Có ai nhặt được thẻ xe ở nhà xe Beta Hoà Lạc không ạ? Cho em xin chuộc 😭", img: "", likes: 5, cmts: [] },
-      { id: 3, user: "Hải Yến", avt: "https://i.pravatar.cc/150?img=12", campus: "HCM", content: "Quận 9 chiều nay mưa to, các bạn đi học nhớ mang áo mưa nhé!", img: "", likes: 24, cmts: [] },
-      { id: 4, user: "Bảo Ngọc", avt: "https://i.pravatar.cc/150?img=15", campus: "Quy Nhơn", content: "AI Valley Quy Nhơn đẹp thật sự các bác ạ 😍", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500", likes: 45, cmts: [] },
-      { id: 5, user: "Thành Đạt", avt: "https://i.pravatar.cc/150?img=20", campus: "Cần Thơ", content: "Cần tìm team đá bóng sân FPT Cần Thơ chiều nay. Thiếu 1 thủ môn.", img: "", likes: 2, cmts: [] },
-      { id: 6, user: "Linh Đan", avt: "https://i.pravatar.cc/150?img=25", campus: "Đà Nẵng", content: "Có ai biết review trung tâm photocopy ở gần KTX B không? Cần photocopy bài tập thôi.", img: "", likes: 8, cmts: [{u:"Mai",t:"Có tiệm ở chợ Hàn đủ tiện"}] },
-      { id: 7, user: "Khánh Phương", avt: "https://i.pravatar.cc/150?img=30", campus: "Hà Nội", content: "Sáng nay thi PRF192, mấy bạn làm bài bao lâu? Đề mình thấy khó qua 🥺", img: "", likes: 19, cmts: [{u:"Tú",t:"Đề này dễ hơn lần trước mà"},{u:"Phát",t:"Mình 45 phút xong"}] },
-      { id: 8, user: "Tuấn Anh", avt: "T", campus: "HCM", content: "Alert: Thẻ xe chiều nay bị hư, các bạn nhớ có thẻ dự phòng hoặc có tiền lẻ để mua vé tạm thời 🚗", img: "", likes: 34, cmts: [] },
-      { id: 9, user: "Minh Thu", avt: "https://i.pravatar.cc/150?img=22", campus: "Quy Nhơn", content: "Lần đầu tiên thấy bình minh ở cầu cảng Quy Nhơn 🌅 Đẹp quá, ai cũng phải đi xem lần nữa ạ!", img: "https://images.unsplash.com/photo-1495888714795-8a5f62e5a6f4?w=500", likes: 78, cmts: [{u:"Như",t:"Háng, phải đi chiều nay"}] },
-      { id: 10, user: "Hoàng Nam", avt: "https://i.pravatar.cc/150?img=18", campus: "Cần Thơ", content: "Ai có group chat môn MAD101 không? Muốn gia nhập để hỏi bài chập chứng 😅", img: "", likes: 11, cmts: [{u:"Duyên",t:"Có, tao mời link"}] },
-      { id: 11, user: "Thanh Hương", avt: "https://i.pravatar.cc/150?img=23", campus: "Đà Nẵng", content: "Mấy bạn có sử dụng Notion để quản lý task không? Chia sẻ template với mình cái nha 📝", img: "", likes: 15, cmts: [] },
-      { id: 12, user: "Quốc Huy", avt: "Q", campus: "Hà Nội", content: "Recruitment: Cần 2 backend developer cho startup. PM mình nếu quan tâm! Mức lương từ 8-12tr/tháng.", img: "", likes: 42, cmts: [{u:"Sơn",t:"Gửi CV rồi"},] },
-      { id: 13, user: "Bích Ngân", avt: "https://i.pravatar.cc/150?img=27", campus: "HCM", content: "Chuyên ngành gì của FPT khó nhất? Nghe nói VLSI sát thương lắm 😨", img: "", likes: 56, cmts: [{u:"Hướng",t:"VLSI khó nhưng thích hợp với những ai yêu thích thiết kế"},{u:"Long",t:"IC Design cũng không thua kém"}] },
-      { id: 14, user: "An Khôi", avt: "https://i.pravatar.cc/150?img=35", campus: "Quy Nhơn", content: "Hôm nay free, có ai muốn đi chơi ở Tây Nguyên không? 🏔️", img: "", likes: 7, cmts: [] },
-      { id: 15, user: "Minh Vũ", avt: "https://i.pravatar.cc/150?img=28", campus: "Cần Thơ", content: "Ai biết cách nộp hỗ trợ khoảng 2 triệu cho sinh viên khó khăn? Vừa mới biết có chương trình này 🤔", img: "", likes: 22, cmts: [{u:"Phi",t:"Lên phòng học sinh phòng làm việc đó là có danh sách"}] },
-      { id: 16, user: "Đức Trung", avt: "https://i.pravatar.cc/150?img=33", campus: "Đà Nẵng", content: "Setup workspace tại KTX xong! Dân lập trình mà home office không có monitor thì toán 🖥️😅", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500", likes: 91, cmts: [{u:"Linh",t:"Workspace đẹp thiệt"}] },
-      { id: 17, user: "FPTU Careers", avt: "https://i.pravatar.cc/150?img=40", campus: "All", scope: "global", content: "🎉 Tuyên bố: Hơn 500 sinh viên FPT được nhận việc làm sau tốt nghiệp kỳ này! Chúc mừng các bạn! #fpt #career #hiring", img: "", likes: 234, cmts: [{u:"Minh",t:"Tuyệt vời!"},{u:"Hân",t:"Mik cũng nằm trong con số đó ^^"}] },
-      { id: 18, user: "Tech Hub Vietnam", avt: "https://i.pravatar.cc/150?img=41", campus: "All", scope: "global", content: "Khóa học miễn phí: 'Mastering AI & Machine Learning' bắt đầu tuần tới! Dành cho toàn bộ sinh viên FPT. Link đăng ký: fptu.edu.vn/ai-course", img: "", likes: 156, cmts: [{u:"Phương",t:"Vừa đăng ký rồi"}] },
-      { id: 19, user: "FPT Scholarship", avt: "https://i.pravatar.cc/150?img=42", campus: "All", scope: "global", content: "Học bổng Toàn phần 2 năm cho sinh viên xuất sắc kỳ này. Hạn nộp: 28/2/2026. Yêu cầu: GPA ≥ 3.5, tham gia 2 hoạt động ngoại khóa.", img: "", likes: 89, cmts: [{u:"Dung",t:"Sắp hết hạn rồi, mau nộp"}] },
-      { id: 20, user: "FPT Sports Club", avt: "https://i.pravatar.cc/150?img=43", campus: "All", scope: "global", content: "⚽ Giải bóng đá nội bộ FPT 2026 - Bắt đầu đăng ký! Các đội từ 5 cơ sở được phép tham gia. Giải nhất: 20 triệu VND 🏆", img: "", likes: 127, cmts: [{u:"Tuấn",t:"Đợi đội mình đăng ký"},{u:"Hòa",t:"Năm nay mình sẽ vô địch!"}] },
-      { id: 21, user: "FPT Life Magazine", avt: "https://i.pravatar.cc/150?img=44", campus: "All", scope: "global", content: "📚 Bài viết: 'Cân bằng cuộc sống sinh viên công nghệ' - Lời khuyên từ các mentor FPT. Đọc đầy đủ trên blog FPT!", img: "", likes: 203, cmts: [{u:"Linh",t:"Useful tips!"},{u:"An",t:"Sẽ áp dụng ngay"}] },
-      { id: 22, user: "FPT Community Events", avt: "https://i.pravatar.cc/150?img=45", campus: "All", scope: "global", content: "🎪 Tháng 3: Festival công nghệ toàn FPT - Hackathon, workshop, networking. Các bạn sắp sẵn sàng chưa? 💻", img: "", likes: 178, cmts: [{u:"Sơn",t:"Excited!"}] },
-      { id: 23, user: "Internship Hub", avt: "https://i.pravatar.cc/150?img=46", campus: "All", scope: "global", content: "💼 Cơ hội internship: Google, Microsoft, Samsung mở đơn tuyển ứng viên từ FPT. Hạn chế chỗ, apply ASAP! 🚀", img: "", likes: 312, cmts: [{u:"Phát",t:"Vừa submit application"},{u:"Hương",t:"Chúc mừng bạn!"}] },
-      { id: 24, user: "Mental Health Support", avt: "https://i.pravatar.cc/150?img=47", campus: "All", scope: "global", content: "🧠 Tâm lý học viên: Thi cử, áp lực tiền bạc, mối quan hệ... Hãy tìm đến phòng Đoàn-Hội để được tư vấn miễn phí! Luôn sẵn sàng lắng nghe. 💙", img: "", likes: 256, cmts: [{u:"Mai",t:"Cảm ơn FPT đã quan tâm"},] },
-      { id: 25, user: "FPT Alumni Success", avt: "https://i.pravatar.cc/150?img=48", campus: "All", scope: "global", content: "🌟 Nhân vật tuần: Nguyễn Minh Phát - Cựu sinh viên FPT, hiện CTO tại Startup Unicorn Việt Nam. Đọc câu chuyện truyền cảm hứng của anh ấy!", img: "", likes: 445, cmts: [{u:"Tú",t:"Mục tiêu của tui"},{u:"Huyền",t:"Amazing!"}] }
-  ];
-
-  let currentUser = { name: "", campus: "", faculty: "" }; 
+  let posts = [];
+  let currentUser = { name: "", campus: "", faculty: "", avatar: "" }; 
 
   let historyStack = [];
   let historyIndex = -1;
@@ -840,15 +814,18 @@
       postBtn.disabled = true;
 
       try {
+          console.log("1. Bắt đầu quá trình đăng bài...");
           let finalImageUrl = "";
-        if(imageFile) {
-            const imageName = `posts/${Date.now()}_img`; 
-            const storageRef = storage.ref().child(imageName); 
-            await storageRef.put(imageFile); 
-            finalImageUrl = await storageRef.getDownloadURL();
-        };
+          if(imageFile) {
+              console.log("2. Phát hiện có ảnh! Đang đẩy ảnh lên Storage: ", imageFile.name);
+              const imageName = `posts/${Date.now()}_img`; 
+              const storageRef = storage.ref().child(imageName); 
+              await storageRef.put(imageFile); 
+              console.log("3. Tải ảnh thành công! Đang lấy link ảnh công khai...");
+              finalImageUrl = await storageRef.getDownloadURL();
           }
 
+          console.log("4. Đang lưu bài viết vào Firestore Database...");
           const newPost = {
               user: currentUser.name,
               avt: avatarValue,
@@ -861,7 +838,8 @@
               timestamp: firebase.firestore.FieldValue.serverTimestamp()
           };
 
-          await firebase.firestore().collection("posts").add(newPost);
+          await db.collection("posts").add(newPost);
+          console.log("5. 🎉 HOÀN TẤT ĐĂNG BÀI!");
 
           document.getElementById('post-content').value = "";
           if(document.getElementById('post-image')) {
@@ -875,7 +853,7 @@
           document.getElementById('post-modal').classList.add('hidden');
 
       } catch (error) {
-          console.error("Lỗi chi tiết:", error);
+          console.error("❌ LỖI RỒI FUBA ƠI:", error);
           alert("Có lỗi xảy ra khi đăng bài: " + error.message);
       } finally {
           postBtn.innerText = oldBtnText;
@@ -1247,8 +1225,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
