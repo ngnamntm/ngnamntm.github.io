@@ -109,10 +109,17 @@
           <div class="flex items-center gap-3">
                <span class="hidden md:block font-bold text-slate-700 text-right text-xs leading-tight">Chào,<br><span id="header-username" class="text-orange-600">Sinh viên</span></span>
                <div class="w-9 h-9 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold text-sm shadow-md" id="user-avatar">?</div>
+               
+               <div class="w-px h-8 bg-slate-200 mx-1 hidden md:block"></div>
+               <button onclick="handleLogout()" class="text-slate-400 hover:text-red-500 hover:bg-red-50 w-9 h-9 rounded-full flex items-center justify-center transition" title="Đăng xuất">
+                   <i class="fa-solid fa-right-from-bracket text-lg"></i>
+               </button>
           </div>
+        </div>
       </header>
       <div class="h-20"></div> 
-<section id="view-home" class="view-section active-view flex-1 bg-slate-50 overflow-y-auto custom-scrollbar">
+
+      <section id="view-home" class="view-section active-view flex-1 bg-slate-50 overflow-y-auto custom-scrollbar">
         <div class="max-w-5xl mx-auto p-6 pt-12"> <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-10 text-white text-center mb-10 shadow-xl relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl group-hover:bg-orange-500/30 transition"></div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-3">Xin chào, <span id="welcome-name" class="text-orange-400">Bạn</span>! 👋</h2>
@@ -205,7 +212,6 @@
               <p class="text-slate-600 mb-6">Tổng hợp kỹ năng sống cần thiết cho sinh viên FPTU.</p>
               
               <div class="grid gap-8">
-                  <!-- Categories accordion or cards -->
                   <div class="space-y-4">
                       <h3 class="text-2xl font-semibold text-slate-800">1. Sinh tồn Tài chính</h3>
                       <ul class="list-disc list-inside text-slate-600">
@@ -240,7 +246,6 @@
                   </div>
               </div>
               
-              <!-- Highlight Cards -->
               <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 flex flex-col items-center text-center">
                       <div class="text-4xl">🎒</div>
@@ -286,7 +291,6 @@
               <p class="text-slate-600 mb-2">Sắp xếp công việc theo mức độ quan trọng, gấp gáp và hạn chót - Làm điều quan trọng trước</p>
               <p class="text-xs text-slate-500 mb-8 italic">📣 Nhập hạn chót và cấp quyền thông báo để nhận nhắc nhở đẩy khi deadline sắp đến (3 tiếng và 1 tiếng trước).</p>
               
-              <!-- Input Section -->
               <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8">
                   <h3 class="font-bold text-lg text-slate-800 mb-4">Thêm công việc</h3>
                   <div class="space-y-4">
@@ -301,7 +305,6 @@
                       </div>
 
                       <div class="grid grid-cols-2 gap-6">
-                          <!-- Importance -->
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Quan trọng?</label>
                               <div class="flex gap-3">
@@ -310,7 +313,6 @@
                               </div>
                           </div>
                           
-                          <!-- Urgency -->
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Gấp gáp?</label>
                               <div class="flex gap-3">
@@ -326,51 +328,34 @@
                   </div>
               </div>
               
-              <!-- 4 Quadrants -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <!-- Q1: Gấp + Quan trọng -->
                   <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-red-200">
-                          <h3 class="text-lg font-bold text-red-700 flex items-center gap-2">
-                              <span class="text-2xl">🔥</span> 
-                              Gấp & Quan trọng
-                          </h3>
+                          <h3 class="text-lg font-bold text-red-700 flex items-center gap-2"><span class="text-2xl">🔥</span> Gấp & Quan trọng</h3>
                           <p class="text-sm text-red-600 font-semibold mt-1">LÀM NGAY</p>
                       </div>
                       <div id="quad-1" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
-                  <!-- Q2: Ko gấp + Quan trọng -->
                   <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-blue-200">
-                          <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2">
-                              <span class="text-2xl">📅</span> 
-                              Quan trọng (Ko gấp)
-                          </h3>
+                          <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2"><span class="text-2xl">📅</span> Quan trọng (Ko gấp)</h3>
                           <p class="text-sm text-blue-600 font-semibold mt-1">LÊN LỊCH</p>
                       </div>
                       <div id="quad-2" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
-                  <!-- Q3: Gấp + Ko quan trọng -->
                   <div class="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-yellow-200">
-                          <h3 class="text-lg font-bold text-yellow-700 flex items-center gap-2">
-                              <span class="text-2xl">⚡</span> 
-                              Gấp (Ko quan trọng)
-                          </h3>
+                          <h3 class="text-lg font-bold text-yellow-700 flex items-center gap-2"><span class="text-2xl">⚡</span> Gấp (Ko quan trọng)</h3>
                           <p class="text-sm text-yellow-600 font-semibold mt-1">UỶ QUYỀN</p>
                       </div>
                       <div id="quad-3" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
                   
-                  <!-- Q4: Ko gấp + Ko quan trọng -->
                   <div class="bg-slate-100 border-2 border-slate-300 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-slate-300">
-                          <h3 class="text-lg font-bold text-slate-700 flex items-center gap-2">
-                              <span class="text-2xl">🗑️</span> 
-                              Không Quan Trọng
-                          </h3>
+                          <h3 class="text-lg font-bold text-slate-700 flex items-center gap-2"><span class="text-2xl">🗑️</span> Không Quan Trọng</h3>
                           <p class="text-sm text-slate-600 font-semibold mt-1">XÓA BỎ</p>
                       </div>
                       <div id="quad-4" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
@@ -499,7 +484,6 @@
                       <span class="text-slate-500 font-medium">Thêm ảnh vào bài viết</span><i class="fa-solid fa-image text-green-500 text-xl"></i>
                   </label>
                   <input type="file" id="post-image" accept="image/*" class="hidden" />
-                  <!-- preview thumbnail shown after user selects a file -->
                   <div id="post-image-preview-container" class="mt-4 hidden">
                       <img id="post-image-preview" src="" class="max-h-40 rounded-xl cursor-pointer" alt="Ảnh đã chọn" />
                   </div>
@@ -509,31 +493,29 @@
       </div>
   </div>
 
-  <!-- full screen image viewer overlay -->
   <div id="image-viewer" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[300] cursor-pointer">
       <img src="" class="max-w-full max-h-full rounded" alt="" />
       <button class="absolute top-4 right-4 text-white text-3xl" onclick="closeImageViewer(event)">&times;</button>
   </div>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
-<script>
-// 2. KHỞI TẠO FIREBASE VỚI TÀI KHOẢN CỦA BẠN
-const firebaseConfig = {
-  apiKey: "AIzaSyCjgp2ZeF59c37xhHXjL_bA_s0mcIntTHA",
-  authDomain: "fptu-survival.firebaseapp.com",
-  projectId: "fptu-survival",
-  storageBucket: "fptu-survival.firebasestorage.app",
-  messagingSenderId: "73576526351",
-  appId: "1:73576526351:web:4294e034341470c041e97a",
-  measurementId: "G-VLEPPW72V5"
-};
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
-// Khởi tạo app
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
+  <script>
+  // --- KHỞI TẠO FIREBASE ---
+  const firebaseConfig = {
+      apiKey: "AIzaSyCjgp2ZeF59c37xhHXjL_bA_s0mcIntTHA",
+      authDomain: "fptu-survival.firebaseapp.com",
+      projectId: "fptu-survival",
+      storageBucket: "fptu-survival.firebasestorage.app",
+      messagingSenderId: "73576526351",
+      appId: "1:73576526351:web:4294e034341470c041e97a",
+      measurementId: "G-VLEPPW72V5"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
   // --- DATA ---
   const specs = {
@@ -545,7 +527,6 @@ const storage = firebase.storage();
   const curriculumData = {
       'IC': [ 
           {name: "Năm 1 - Kỳ 1", subs: [{c:"MAE101",n:"Toán Kỹ thuật",t:"hard",tip:"Đạo hàm, tích phân phải chắc.", diff:5, ref:"#"}, {c:"PHY101",n:"Vật lý 1",t:"medium",tip:"Cơ, Nhiệt.", diff:4, ref:"#"}, {c:"JPD113",n:"Tiếng Nhật sơ cấp",t:"medium",tip:"Học bảng chữ cái ngay.", diff:3, ref:"#"}]},
-
           {name: "Năm 1 - Kỳ 2", subs: [{c:"PRF192",n:"Lập trình C",t:"hard",tip:"Con trỏ là ác mộng."}, {c:"CEA201",n:"Kiến trúc máy tính",t:"medium",tip:"CPU, Memory."}, {c:"PHY102",n:"Vật lý 2",t:"hard",tip:"Điện từ trường."}]},
           {name: "Năm 2 - Kỳ 3", subs: [{c:"EE101",n:"Mạch điện",t:"hard",tip:"Định luật Ohm."}, {c:"DLD101",n:"Thiết kế số",t:"medium",tip:"Logic Gates."}]},
           {name: "Năm 2 - Kỳ 4", subs: [{c:"ECD201",n:"Mạch điện tử",t:"hard",tip:"Transistor, MOSFET."}, {c:"SSG104",n:"Tín hiệu hệ thống",t:"hard",tip:"Fourier."}]},
@@ -560,7 +541,6 @@ const storage = firebase.storage();
       ]
   };
 
-  // list of generic avatars (cartoon faces) users can be randomly assigned
   const avatarList = [
       "https://i.pravatar.cc/150?img=5",
       "https://i.pravatar.cc/150?img=8",
@@ -569,81 +549,54 @@ const storage = firebase.storage();
       "https://i.pravatar.cc/150?img=20"
   ];
 
-  let posts = [
-      { id: 1, user: "Minh Tuấn", avt: "https://i.pravatar.cc/150?img=5", campus: "Đà Nẵng", content: "Review Cơm tấm 35k cổng sau Đà Nẵng: Sườn to, cơm nhiều. 9/10 nhé ae!", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500", likes: 12, cmts: [{u:"Nam",t:"Xin địa chỉ bác ơi"}] },
-      { id: 2, user: "Confession HN", avt: "https://i.pravatar.cc/150?img=8", campus: "Hà Nội", content: "Có ai nhặt được thẻ xe ở nhà xe Beta Hoà Lạc không ạ? Cho em xin chuộc 😭", img: "", likes: 5, cmts: [] },
-      { id: 3, user: "Hải Yến", avt: "https://i.pravatar.cc/150?img=12", campus: "HCM", content: "Quận 9 chiều nay mưa to, các bạn đi học nhớ mang áo mưa nhé!", img: "", likes: 24, cmts: [] },
-      { id: 4, user: "Bảo Ngọc", avt: "https://i.pravatar.cc/150?img=15", campus: "Quy Nhơn", content: "AI Valley Quy Nhơn đẹp thật sự các bác ạ 😍", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500", likes: 45, cmts: [] },
-      { id: 5, user: "Thành Đạt", avt: "https://i.pravatar.cc/150?img=20", campus: "Cần Thơ", content: "Cần tìm team đá bóng sân FPT Cần Thơ chiều nay. Thiếu 1 thủ môn.", img: "", likes: 2, cmts: [] },
-      { id: 6, user: "Linh Đan", avt: "https://i.pravatar.cc/150?img=25", campus: "Đà Nẵng", content: "Có ai biết review trung tâm photocopy ở gần KTX B không? Cần photocopy bài tập thôi.", img: "", likes: 8, cmts: [{u:"Mai",t:"Có tiệm ở chợ Hàn đủ tiện"}] },
-      { id: 7, user: "Khánh Phương", avt: "https://i.pravatar.cc/150?img=30", campus: "Hà Nội", content: "Sáng nay thi PRF192, mấy bạn làm bài bao lâu? Đề mình thấy khó qua 🥺", img: "", likes: 19, cmts: [{u:"Tú",t:"Đề này dễ hơn lần trước mà"},{u:"Phát",t:"Mình 45 phút xong"}] },
-      { id: 8, user: "Tuấn Anh", avt: "T", campus: "HCM", content: "Alert: Thẻ xe chiều nay bị hư, các bạn nhớ có thẻ dự phòng hoặc có tiền lẻ để mua vé tạm thời 🚗", img: "", likes: 34, cmts: [] },
-      { id: 9, user: "Minh Thu", avt: "https://i.pravatar.cc/150?img=22", campus: "Quy Nhơn", content: "Lần đầu tiên thấy bình minh ở cầu cảng Quy Nhơn 🌅 Đẹp quá, ai cũng phải đi xem lần nữa ạ!", img: "https://images.unsplash.com/photo-1495888714795-8a5f62e5a6f4?w=500", likes: 78, cmts: [{u:"Như",t:"Háng, phải đi chiều nay"}] },
-      { id: 10, user: "Hoàng Nam", avt: "https://i.pravatar.cc/150?img=18", campus: "Cần Thơ", content: "Ai có group chat môn MAD101 không? Muốn gia nhập để hỏi bài chập chứng 😅", img: "", likes: 11, cmts: [{u:"Duyên",t:"Có, tao mời link"}] },
-      { id: 11, user: "Thanh Hương", avt: "https://i.pravatar.cc/150?img=23", campus: "Đà Nẵng", content: "Mấy bạn có sử dụng Notion để quản lý task không? Chia sẻ template với mình cái nha 📝", img: "", likes: 15, cmts: [] },
-      { id: 12, user: "Quốc Huy", avt: "Q", campus: "Hà Nội", content: "Recruitment: Cần 2 backend developer cho startup. PM mình nếu quan tâm! Mức lương từ 8-12tr/tháng.", img: "", likes: 42, cmts: [{u:"Sơn",t:"Gửi CV rồi"},] },
-      { id: 13, user: "Bích Ngân", avt: "https://i.pravatar.cc/150?img=27", campus: "HCM", content: "Chuyên ngành gì của FPT khó nhất? Nghe nói VLSI sát thương lắm 😨", img: "", likes: 56, cmts: [{u:"Hướng",t:"VLSI khó nhưng thích hợp với những ai yêu thích thiết kế"},{u:"Long",t:"IC Design cũng không thua kém"}] },
-      { id: 14, user: "An Khôi", avt: "https://i.pravatar.cc/150?img=35", campus: "Quy Nhơn", content: "Hôm nay free, có ai muốn đi chơi ở Tây Nguyên không? 🏔️", img: "", likes: 7, cmts: [] },
-      { id: 15, user: "Minh Vũ", avt: "https://i.pravatar.cc/150?img=28", campus: "Cần Thơ", content: "Ai biết cách nộp hỗ trợ khoảng 2 triệu cho sinh viên khó khăn? Vừa mới biết có chương trình này 🤔", img: "", likes: 22, cmts: [{u:"Phi",t:"Lên phòng học sinh phòng làm việc đó là có danh sách"}] },
-      { id: 16, user: "Đức Trung", avt: "https://i.pravatar.cc/150?img=33", campus: "Đà Nẵng", content: "Setup workspace tại KTX xong! Dân lập trình mà home office không có monitor thì toán 🖥️😅", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500", likes: 91, cmts: [{u:"Linh",t:"Workspace đẹp thiệt"}] },
-      { id: 17, user: "FPTU Careers", avt: "https://i.pravatar.cc/150?img=40", campus: "All", scope: "global", content: "🎉 Tuyên bố: Hơn 500 sinh viên FPT được nhận việc làm sau tốt nghiệp kỳ này! Chúc mừng các bạn! #fpt #career #hiring", img: "", likes: 234, cmts: [{u:"Minh",t:"Tuyệt vời!"},{u:"Hân",t:"Mik cũng nằm trong con số đó ^^"}] },
-      { id: 18, user: "Tech Hub Vietnam", avt: "https://i.pravatar.cc/150?img=41", campus: "All", scope: "global", content: "Khóa học miễn phí: 'Mastering AI & Machine Learning' bắt đầu tuần tới! Dành cho toàn bộ sinh viên FPT. Link đăng ký: fptu.edu.vn/ai-course", img: "", likes: 156, cmts: [{u:"Phương",t:"Vừa đăng ký rồi"}] },
-      { id: 19, user: "FPT Scholarship", avt: "https://i.pravatar.cc/150?img=42", campus: "All", scope: "global", content: "Học bổng Toàn phần 2 năm cho sinh viên xuất sắc kỳ này. Hạn nộp: 28/2/2026. Yêu cầu: GPA ≥ 3.5, tham gia 2 hoạt động ngoại khóa.", img: "", likes: 89, cmts: [{u:"Dung",t:"Sắp hết hạn rồi, mau nộp"}] },
-      { id: 20, user: "FPT Sports Club", avt: "https://i.pravatar.cc/150?img=43", campus: "All", scope: "global", content: "⚽ Giải bóng đá nội bộ FPT 2026 - Bắt đầu đăng ký! Các đội từ 5 cơ sở được phép tham gia. Giải nhất: 20 triệu VND 🏆", img: "", likes: 127, cmts: [{u:"Tuấn",t:"Đợi đội mình đăng ký"},{u:"Hòa",t:"Năm nay mình sẽ vô địch!"}] },
-      { id: 21, user: "FPT Life Magazine", avt: "https://i.pravatar.cc/150?img=44", campus: "All", scope: "global", content: "📚 Bài viết: 'Cân bằng cuộc sống sinh viên công nghệ' - Lời khuyên từ các mentor FPT. Đọc đầy đủ trên blog FPT!", img: "", likes: 203, cmts: [{u:"Linh",t:"Useful tips!"},{u:"An",t:"Sẽ áp dụng ngay"}] },
-      { id: 22, user: "FPT Community Events", avt: "https://i.pravatar.cc/150?img=45", campus: "All", scope: "global", content: "🎪 Tháng 3: Festival công nghệ toàn FPT - Hackathon, workshop, networking. Các bạn sắp sẵn sàng chưa? 💻", img: "", likes: 178, cmts: [{u:"Sơn",t:"Excited!"}] },
-      { id: 23, user: "Internship Hub", avt: "https://i.pravatar.cc/150?img=46", campus: "All", scope: "global", content: "💼 Cơ hội internship: Google, Microsoft, Samsung mở đơn tuyển ứng viên từ FPT. Hạn chế chỗ, apply ASAP! 🚀", img: "", likes: 312, cmts: [{u:"Phát",t:"Vừa submit application"},{u:"Hương",t:"Chúc mừng bạn!"}] },
-      { id: 24, user: "Mental Health Support", avt: "https://i.pravatar.cc/150?img=47", campus: "All", scope: "global", content: "🧠 Tâm lý học viên: Thi cử, áp lực tiền bạc, mối quan hệ... Hãy tìm đến phòng Đoàn-Hội để được tư vấn miễn phí! Luôn sẵn sàng lắng nghe. 💙", img: "", likes: 256, cmts: [{u:"Mai",t:"Cảm ơn FPT đã quan tâm"},] },
-      { id: 25, user: "FPT Alumni Success", avt: "https://i.pravatar.cc/150?img=48", campus: "All", scope: "global", content: "🌟 Nhân vật tuần: Nguyễn Minh Phát - Cựu sinh viên FPT, hiện CTO tại Startup Unicorn Việt Nam. Đọc câu chuyện truyền cảm hứng của anh ấy!", img: "", likes: 445, cmts: [{u:"Tú",t:"Mục tiêu của tui"},{u:"Huyền",t:"Amazing!"}] }
-  ];
+  let posts = []; // Mảng sẽ được nạp dữ liệu từ Firebase
+  let currentUser = { name: "", campus: "", faculty: "", avatar: "" }; 
 
-  let currentUser = { name: "", campus: "", faculty: "" }; 
+  // ---- UNDO/REDO HISTORY ----
+  let historyStack = [];
+  let historyIndex = -1;
+  let currentFeedType = 'local';
 
-// ---- UNDO/REDO HISTORY ----
-let historyStack = [];
-let historyIndex = -1;
-let currentFeedType = 'local';
+  function saveHistory(){
+      const snapshot = {
+          posts: JSON.parse(JSON.stringify(posts)),
+          eisenhowerTasks: JSON.parse(JSON.stringify(eisenhowerTasks))
+      };
+      historyStack = historyStack.slice(0, historyIndex+1);
+      historyStack.push(snapshot);
+      historyIndex++;
+  }
 
-function saveHistory(){
-    const snapshot = {
-        posts: JSON.parse(JSON.stringify(posts)),
-        eisenhowerTasks: JSON.parse(JSON.stringify(eisenhowerTasks))
-    };
-    historyStack = historyStack.slice(0, historyIndex+1);
-    historyStack.push(snapshot);
-    historyIndex++;
-}
+  function applyHistory(snapshot){
+      posts = JSON.parse(JSON.stringify(snapshot.posts));
+      eisenhowerTasks = JSON.parse(JSON.stringify(snapshot.eisenhowerTasks));
+      renderEisenhowerMatrix();
+      filterFeed(currentFeedType);
+  }
 
-function applyHistory(snapshot){
-    posts = JSON.parse(JSON.stringify(snapshot.posts));
-    eisenhowerTasks = JSON.parse(JSON.stringify(snapshot.eisenhowerTasks));
-    renderEisenhowerMatrix();
-    filterFeed(currentFeedType);
-}
+  function undo(){
+      if(historyIndex > 0){
+          historyIndex--;
+          applyHistory(historyStack[historyIndex]);
+      }
+  }
+  function redo(){
+      if(historyIndex < historyStack.length - 1){
+          historyIndex++;
+          applyHistory(historyStack[historyIndex]);
+      }
+  }
 
-function undo(){
-    if(historyIndex > 0){
-        historyIndex--;
-        applyHistory(historyStack[historyIndex]);
-    }
-}
-function redo(){
-    if(historyIndex < historyStack.length - 1){
-        historyIndex++;
-        applyHistory(historyStack[historyIndex]);
-    }
-}
+  document.addEventListener('keydown', e=>{
+      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='z'){
+          e.preventDefault(); undo();
+      }
+      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='y'){
+          e.preventDefault(); redo();
+      }
+  });
 
-document.addEventListener('keydown', e=>{
-    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='z'){
-        e.preventDefault(); undo();
-    }
-    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='y'){
-        e.preventDefault(); redo();
-    }
-});
-
-  // --- CORE FUNCTIONS (QUAN TRỌNG ĐỂ ĐĂNG NHẬP) ---
+  // --- CORE FUNCTIONS ---
   function handleLogin() {
       const name = document.getElementById('fullname').value.trim();
       const mssv = document.getElementById('mssv').value.trim();
@@ -651,18 +604,16 @@ document.addEventListener('keydown', e=>{
           currentUser.name = name; 
           currentUser.campus = document.getElementById('campus').value; 
           currentUser.faculty = document.getElementById('faculty').value;
-          // assign random avatar image
           currentUser.avatar = avatarList[Math.floor(Math.random()*avatarList.length)];
           
           document.getElementById('welcome-name').innerText = name;
           document.getElementById('welcome-campus').innerText = currentUser.campus;
-          // Cập nhật tên trên header
+          
           const headerName = document.getElementById('header-username');
           if(headerName) headerName.innerText = name;
 
           document.getElementById('welcome-faculty').innerText = document.getElementById('faculty').options[document.getElementById('faculty').selectedIndex].text;
 
-          // update avatar displays (header + any user-avt-display elements)
           const setAvatarElem = e => {
               if(currentUser.avatar) {
                   e.innerHTML = `<img src="${currentUser.avatar}" class="w-full h-full rounded-full object-cover">`;
@@ -686,13 +637,17 @@ document.addEventListener('keydown', e=>{
           
           switchView('home');
           filterFeed('local');
-          // capture initial state
           saveHistory();
-        listenToPosts(); 
+          listenToPosts(); // Kích hoạt lắng nghe bài viết
       } else { alert("Vui lòng điền đủ Tên và MSSV!"); }
   }
 
-  // --- NAVIGATION ---
+  function handleLogout() {
+      if(confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+          window.location.reload();
+      }
+  }
+
   function switchView(id) {
       document.querySelectorAll('.view-section').forEach(e => {
           e.classList.add('hidden-view'); e.classList.remove('active-view');
@@ -705,7 +660,6 @@ document.addEventListener('keydown', e=>{
       if(btn) btn.classList.add('text-orange-600', 'bg-white', 'shadow-sm');
   }
 
-  // --- BACK BUTTON ---
   function handleBackButton() {
       const views = ['home', 'community', 'tools-menu', 'chat', 'guide', 'wiki-select', 'wiki-roadmap', 'social'];
       const currentView = views.find(v => !document.getElementById(v)?.classList.contains('hidden-view'));
@@ -740,12 +694,11 @@ document.addEventListener('keydown', e=>{
       document.getElementById('roadmap-title').innerText = name;
       container.innerHTML = "";
       
-      // roadmap overview
       container.innerHTML += `<div class="mb-6">
           <h3 class="font-bold text-lg text-slate-800">Lộ trình học tập</h3>
           <ul class="list-disc list-inside text-slate-600">
-              <li><b>Kinh tế:</b> Đại cương → Cơ sở ngành (Kinh tế vi mô/vĩ mô) → Chuyên ngành sâu (Tài chính doanh nghiệp, Marketing quốc tế).</li>
-              <li><b>Công nghệ:</b> Lập trình căn bản (C/C++, Python) → Cấu trúc dữ liệu & Giải thuật → Chuyên sâu (Web, Mobile, AI).</li>
+              <li><b>Kinh tế:</b> Đại cương → Cơ sở ngành → Chuyên ngành sâu.</li>
+              <li><b>Công nghệ:</b> Lập trình căn bản → Cấu trúc dữ liệu & Giải thuật → Chuyên sâu.</li>
           </ul>
       </div>`;
       
@@ -761,7 +714,7 @@ document.addEventListener('keydown', e=>{
       switchView('wiki-roadmap');
   }
 
-  // --- SOCIAL ---
+  // --- SOCIAL FEED ---
   function filterFeed(type) {
       currentFeedType = type;
       const container = document.getElementById('social-feed');
@@ -782,20 +735,19 @@ document.addEventListener('keydown', e=>{
       }
 
       const filtered = posts.filter(p => {
-          const scope = p.scope || 'local'; // default older posts to local
+          const scope = p.scope || 'local';
           if(type === 'global') return scope === 'global';
-          // local feed: only posts scoped local and matching campus
           return scope === 'local' && p.campus === currentUser.campus;
       });
       
       filtered.forEach(p => {
           let imgHtml = p.img ? `<img src="${p.img}" onclick="viewImage(this.src)" class="w-full h-auto max-h-[500px] object-cover rounded-2xl mt-4 mb-2 border border-slate-100 cursor-pointer">` : "";
-          let commentsHtml = p.cmts.map(c => `<div class="bg-slate-100 p-3 rounded-2xl text-sm mt-2 break-words"><b>${c.u}:</b> ${c.t}</div>`).join('');
+          let commentsHtml = p.cmts ? p.cmts.map(c => `<div class="bg-slate-100 p-3 rounded-2xl text-sm mt-2 break-words"><b>${c.u}:</b> ${c.t}</div>`).join('') : "";
           let badge = type==='global' ? `<span class="bg-slate-100 text-slate-500 text-[10px] px-2 py-0.5 rounded-full ml-2 border">${p.campus}</span>` : "";
 
           const div = document.createElement('div');
           div.className = "bg-white p-6 rounded-3xl shadow-sm border border-slate-200 animate-[slideUp_0.3s]";
-          // build avatar html
+          
           let avatarHtml;
           if(p.avt && (p.avt.startsWith('http') || p.avt.startsWith('data:'))){
               avatarHtml = `<img src="${p.avt}" class="w-12 h-12 rounded-full object-cover shrink-0">`;
@@ -806,25 +758,26 @@ document.addEventListener('keydown', e=>{
             <div class="flex gap-4 mb-3">${avatarHtml}<div><h5 class="font-bold text-base text-slate-900 flex items-center">${p.user} ${badge}</h5><p class="text-xs text-slate-400">Vừa xong</p></div></div>
             <p class="text-base text-slate-800 leading-relaxed break-words">${p.content}</p>${imgHtml}
             <div class="flex gap-8 mt-4 pt-4 border-t border-slate-50 text-sm font-bold text-slate-500">
-                <button onclick="likePost(${p.id}, this)" class="hover:text-red-500 flex items-center gap-2 transition"><i class="fa-regular fa-heart text-xl"></i> <span id="like-count-${p.id}">${p.likes}</span></button>
-                <button onclick="toggleComment(${p.id})" class="hover:text-blue-500 flex items-center gap-2 transition"><i class="fa-regular fa-comment text-xl"></i> Bình luận</button>
+                <button onclick="likePost('${p.id}', this)" class="hover:text-red-500 flex items-center gap-2 transition"><i class="fa-regular fa-heart text-xl"></i> <span id="like-count-${p.id}">${p.likes || 0}</span></button>
+                <button onclick="toggleComment('${p.id}')" class="hover:text-blue-500 flex items-center gap-2 transition"><i class="fa-regular fa-comment text-xl"></i> Bình luận</button>
             </div>
             <div id="cmt-box-${p.id}" class="hidden mt-4 pt-2 border-t border-slate-50">
                 <div id="cmt-list-${p.id}" class="space-y-2 mb-3">${commentsHtml}</div>
-                <div class="flex gap-3"><input id="cmt-input-${p.id}" class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-orange-300 transition" placeholder="Viết bình luận..." onkeydown="if(event.key==='Enter') addComment(${p.id})"><button onclick="addComment(${p.id})" class="text-blue-600 font-bold text-sm px-3 hover:bg-blue-50 rounded-full">Gửi</button></div>
+                <div class="flex gap-3"><input id="cmt-input-${p.id}" class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-orange-300 transition" placeholder="Viết bình luận..." onkeydown="if(event.key==='Enter') addComment('${p.id}')"><button onclick="addComment('${p.id}')" class="text-blue-600 font-bold text-sm px-3 hover:bg-blue-50 rounded-full">Gửi</button></div>
             </div>`;
           container.appendChild(div);
       });
   }
 
   function likePost(id, btn) {
+      // Logic tạm trên UI
       const p = posts.find(x => x.id === id);
+      if(!p) return;
       const icon = btn.querySelector('i');
       const span = btn.querySelector('span');
       if (icon.classList.contains('fa-regular')) { icon.classList.replace('fa-regular', 'fa-solid'); btn.classList.add('text-red-500'); p.likes++; } 
       else { icon.classList.replace('fa-solid', 'fa-regular'); btn.classList.remove('text-red-500'); p.likes--; }
       span.innerText = p.likes;
-      saveHistory();
   }
   function toggleComment(id) { document.getElementById(`cmt-box-${id}`).classList.toggle('hidden'); }
   function addComment(id) {
@@ -832,6 +785,8 @@ document.addEventListener('keydown', e=>{
       const text = input.value.trim();
       if (!text) return;
       const p = posts.find(x => x.id === id);
+      if(!p) return;
+      if(!p.cmts) p.cmts = [];
       p.cmts.push({u: currentUser.name, t: text});
       const list = document.getElementById(`cmt-list-${id}`);
       const newCmt = document.createElement('div');
@@ -839,26 +794,98 @@ document.addEventListener('keydown', e=>{
       newCmt.innerHTML = `<b>${currentUser.name}:</b> ${text}`;
       list.appendChild(newCmt);
       input.value = "";
-      saveHistory();
   }
- function addPost() {
+
+  // --- FIREBASE: ĐĂNG BÀI VÀ LẮNG NGHE ---
+  function addPost() {
       const txt = document.getElementById('post-content').value.trim();
       const scope = document.getElementById('post-scope').value || 'local';
       if(!txt) return;
       
       const fileInput = document.getElementById('post-image');
       let selectedFile = null;
-      
-      // Lấy trực tiếp file gốc thay vì biến thành base64
       if(fileInput && fileInput.files && fileInput.files[0]) {
           selectedFile = fileInput.files[0];
       }
-      
-      // Bắn file thẳng sang hàm pushPost
       pushPost(txt, selectedFile, scope);
   }
 
-  // show preview on file selection inside modal
+  async function pushPost(txt, imageFile, scope='local') {
+      const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+      const campus = scope === 'global' ? 'All' : currentUser.campus;
+      
+      const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
+      const oldBtnText = postBtn.innerText;
+      postBtn.innerText = "Đang tải ảnh lên..."; 
+      postBtn.disabled = true;
+
+      try {
+          let finalImageUrl = "";
+          if(imageFile) {
+              const imageName = `posts/${Date.now()}_img`; 
+              const storageRef = firebase.storage().ref().child(imageName); 
+              await storageRef.put(imageFile); 
+              finalImageUrl = await storageRef.getDownloadURL();
+          }
+
+          const newPost = {
+              user: currentUser.name,
+              avt: avatarValue,
+              campus: campus,
+              scope: scope,
+              content: txt,
+              img: finalImageUrl, 
+              likes: 0,
+              cmts: [],
+              timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          await firebase.firestore().collection("posts").add(newPost);
+
+          document.getElementById('post-content').value = "";
+          if(document.getElementById('post-image')) {
+              document.getElementById('post-image').value = "";
+              const previewCont = document.getElementById('post-image-preview-container');
+              if(previewCont) previewCont.classList.add('hidden');
+              const previewImg = document.getElementById('post-image-preview');
+              if(previewImg) previewImg.src = "";
+          }
+          if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
+          document.getElementById('post-modal').classList.add('hidden');
+
+      } catch (error) {
+          console.error("Lỗi chi tiết:", error);
+          alert("Có lỗi xảy ra khi đăng bài: " + error.message);
+      } finally {
+          postBtn.innerText = oldBtnText;
+          postBtn.disabled = false;
+      }
+  }
+
+  function listenToPosts() {
+      db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+          posts = []; 
+          snapshot.forEach((doc) => {
+              const data = doc.data();
+              posts.push({
+                  id: doc.id, 
+                  user: data.user,
+                  avt: data.avt,
+                  campus: data.campus,
+                  scope: data.scope,
+                  content: data.content,
+                  img: data.img,
+                  likes: data.likes || 0,
+                  cmts: data.cmts || []
+              });
+          });
+          filterFeed(currentFeedType); 
+      }, (error) => {
+          console.error("Lỗi khi tải dữ liệu:", error);
+      });
+  }
+
+  // --- IMAGE VIEWER ---
   document.getElementById('post-image').addEventListener('change', function(){
       if(this.files && this.files[0]){
           const reader = new FileReader();
@@ -877,7 +904,6 @@ document.addEventListener('keydown', e=>{
   document.getElementById('post-image-preview').addEventListener('click', function(){
       if(this.src) viewImage(this.src);
   });
-
   function viewImage(url){
       const iv=document.getElementById('image-viewer');
       iv.querySelector('img').src=url;
@@ -889,97 +915,7 @@ document.addEventListener('keydown', e=>{
       iv.classList.add('hidden');
       iv.querySelector('img').src='';
   }
-  // clicking outside the image (on overlay) also closes
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
- // --- HÀM ĐĂNG BÀI LÊN FIREBASE (Đã fix lỗi storage) ---
-// --- HÀM ĐĂNG BÀI LÊN FIREBASE ---
-async function pushPost(txt, imgUrl, scope='local') {
-    const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
-    const campus = scope === 'global' ? 'All' : currentUser.campus;
-    
-    // Đổi chữ ở nút đăng để báo cho người dùng đang xử lý
-    const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
-    const oldBtnText = postBtn.innerText;
-    postBtn.innerText = "Đang xử lý...";
-    postBtn.disabled = true;
-
-    try {
-        let finalImageUrl = "";
-        
-        // Nếu bài viết có ảnh, đẩy ảnh lên Firebase Storage trước
-        if(imgUrl) {
-            const imageName = `posts/${Date.now()}_img.jpg`;
-            const storageRef = storage.ref().child(imageName);
-            // Upload ảnh dạng base64
-            await storageRef.putString(imgUrl, 'data_url');
-            // Lấy đường link public của ảnh sau khi up xong
-            finalImageUrl = await storageRef.getDownloadURL();
-        }
-
-        // Đóng gói dữ liệu bài viết
-        const newPost = {
-            user: currentUser.name,
-            avt: avatarValue,
-            campus: campus,
-            scope: scope,
-            content: txt,
-            img: finalImageUrl, 
-            likes: 0,
-            cmts: [],
-            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Lấy giờ chuẩn của máy chủ
-        };
-
-        // Bắn dữ liệu lên kho chứa 'posts' của Firestore
-        await db.collection("posts").add(newPost);
-
-        // Đăng xong thì dọn dẹp form (Reset UI)
-        document.getElementById('post-content').value = "";
-        if(document.getElementById('post-image')) {
-            document.getElementById('post-image').value = "";
-            const previewCont = document.getElementById('post-image-preview-container');
-            if(previewCont) previewCont.classList.add('hidden');
-            const previewImg = document.getElementById('post-image-preview');
-            if(previewImg) previewImg.src = "";
-        }
-        if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
-        document.getElementById('post-modal').classList.add('hidden');
-
-        // Lưu ý: Không cần gọi hàm filterFeed() ở đây nữa vì đã có hàm lắng nghe lo vụ đó!
-
-    } catch (error) {
-        console.error("Lỗi:", error);
-        alert("Có lỗi xảy ra khi đăng bài: " + error.message);
-    } finally {
-        postBtn.innerText = oldBtnText;
-        postBtn.disabled = false;
-    }
-}
-  // --- HÀM LẮNG NGHE BÀI VIẾT (REAL-TIME) ---
-function listenToPosts() {
-    // Kéo dữ liệu từ 'posts', sắp xếp bài mới nhất lên đầu
-    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-        posts = []; // Xoá mảng data tĩnh cũ
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-            posts.push({
-                id: doc.id, // ID thật của Firebase
-                user: data.user,
-                avt: data.avt,
-                campus: data.campus,
-                scope: data.scope,
-                content: data.content,
-                img: data.img,
-                likes: data.likes || 0,
-                cmts: data.cmts || []
-            });
-        });
-        
-        // Vẽ lại bảng tin
-        filterFeed(currentFeedType); 
-    }, (error) => {
-        console.error("Lỗi khi tải dữ liệu:", error);
-    });
-}
 
   // --- CALC & CHECK ---
   function toggleModal(id) { document.getElementById('modal-' + id).classList.toggle('hidden'); }
@@ -988,14 +924,11 @@ function listenToPosts() {
       const current = parseFloat(document.getElementById('calc-total').value);
       const r = document.getElementById('calc-result');
       const conv = document.getElementById('calc-convert');
-      // validate
       if(isNaN(current) || current < 0 || current > 10){
           r.innerHTML = `<span class="text-red-600 font-bold">Điểm quá trình không hợp lệ! (0-10)</span>`;
           conv.innerHTML = '';
           return;
       }
-
-      // formula: (current + final) / 2 >=5  => final = 10 - current
       const finalNeeded = 10 - current;
       let message = '';
       if(finalNeeded > 10){
@@ -1006,8 +939,6 @@ function listenToPosts() {
           message = `Cần thi Final ít nhất: <b>${finalNeeded.toFixed(1)}</b> điểm`;
       }
       r.innerHTML = message;
-
-      // keep conversion table for reference
       conv.innerHTML = `
           <table class="w-full text-sm">
               <tr><th class="text-left">Điểm 10</th><th>Hệ 4</th><th>Chữ</th></tr>
@@ -1033,8 +964,11 @@ function listenToPosts() {
       histDiv.innerHTML = history.map(h=>`<div class="border-b py-1 text-xs">${h.date}: ${h.total}</div>`).join('');
   }
   
-  
-  // persistence and notifications for deadlines
+  // --- EISENHOWER TASKS ---
+  let eisenhowerTasks = [];
+  let currentImportance = null;
+  let currentUrgency = null;
+
   function saveEisenhowerTasks(){
       localStorage.setItem('eisenhowerTasks', JSON.stringify(eisenhowerTasks));
   }
@@ -1052,12 +986,12 @@ function listenToPosts() {
       eisenhowerTasks.forEach(task=>{
           if(task.due){
               const diff = task.due - now;
-              if(diff <= 3*3600*1000 && !task.notified3h){
+              if(diff <= 3*3600*1000 && diff > 0 && !task.notified3h){
                   new Notification(`🔔 Deadline sắp tới: ${task.name} còn 3 giờ`);
                   task.notified3h = true;
                   saveEisenhowerTasks();
               }
-              if(diff <= 1*3600*1000 && !task.notified1h){
+              if(diff <= 1*3600*1000 && diff > 0 && !task.notified1h){
                   new Notification(`🔔 Deadline sắp tới: ${task.name} còn 1 giờ`);
                   task.notified1h = true;
                   saveEisenhowerTasks();
@@ -1065,139 +999,9 @@ function listenToPosts() {
           }
       });
   }
-  window.addEventListener('load',()=>{ 
-      renderCalcHistory(); 
-      loadEisenhowerTasks();
-      renderEisenhowerMatrix();
-      requestNotificationPermission();
-      checkDeadlines();
-      setInterval(checkDeadlines, 60000);
-  });
-  
-  async function checkPrompt(){
-      const v = document.getElementById('prompt-input').value.trim();
-      const r = document.getElementById('prompt-res');
-      if(!v) return;
-      // loading animation text
-      r.innerHTML = `<span class="text-slate-400"><i class='fa-solid fa-spinner fa-spin'></i> Đang phân tích và tối ưu prompt...</span>`;
-
-      try {
-          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks";
-          const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
-
-          const context = `Bạn là một chuyên gia Prompt Engineering cấp cao. Nhiệm vụ của bạn là đánh giá và tối ưu hóa câu lệnh (prompt) mà người dùng nhập vào.\nDưới đây là câu lệnh của người dùng: ${v}.\nHãy trả lời bằng mã HTML (không dùng markdown) với cấu trúc 2 phần rõ ràng:\n\nPhần 1: <b>💡 Đánh giá nhanh:</b> Đánh giá điểm mạnh, điểm yếu của prompt này (VD: thiếu ngữ cảnh, thiếu vai trò...). Trả lời thật ngắn gọn.\n\nPhần 2: <b>✨ Prompt tối ưu:</b> Viết lại một prompt hoàn chỉnh, chuyên nghiệp nhất dựa trên ý định của người dùng, áp dụng các kỹ thuật như đặt vai trò (Act as...), cung cấp context, và yêu cầu format rõ ràng.`;
-
-          const response = await fetch(API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ contents: [{ parts: [{ text: context }] }] })
-          });
-
-          const data = await response.json();
-          if (!response.ok) throw new Error(data.error?.message || 'Lỗi API');
-
-          if (data.candidates && data.candidates[0].content) {
-              const reply = data.candidates[0].content.parts[0].text;
-              r.innerHTML = reply.replace(/\n/g, '<br>');
-          } else {
-              r.innerHTML = `<span class="text-red-600">Không nhận được phản hồi hợp lệ từ AI.</span>`;
-          }
-      } catch (err) {
-          console.error(err);
-          r.innerHTML = `<span class="text-red-600 font-bold"><i class='fa-solid fa-triangle-exclamation'></i> Lỗi: ${err.message || 'Mất mạng hoặc API'}</span>`;
-      }
-  }
-
- // --- CHATBOT ---
-  async function sendChat(optionalText = null) {
-      const inp = document.getElementById('chat-input');
-      const text = optionalText || inp.value.trim();
-      if (!text) return;
-
-      const starters = document.getElementById('chat-starters');
-      if (starters) starters.style.display = 'none';
-      const box = document.getElementById('chat-messages');
-      // User Message
-      box.innerHTML += `<div class="flex gap-4 flex-row-reverse animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-user"></i></div><div class="bg-orange-600 text-white p-4 rounded-3xl rounded-tr-none shadow text-base max-w-[85%] break-words">${text}</div></div>`;
-      inp.value = "";
-      box.scrollTop = box.scrollHeight;
-
-      // Loading
-      const typingId = "typing-" + Date.now();
-      const typingDiv = document.createElement('div');
-      typingDiv.id = typingId;
-      typingDiv.className = "flex gap-4 mt-2";
-      typingDiv.innerHTML = `<div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-robot"></i></div><div class="bg-white border p-4 rounded-3xl rounded-tl-none text-sm typing-indicator"><span></span><span></span><span></span></div>`;
-      box.appendChild(typingDiv);
-      box.scrollTop = box.scrollHeight;
-
-      try {
-          // --- CẤU HÌNH ---
-          // Key của bạn (Giữ nguyên)
-          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks"; 
-          
-          // 👇 THAY ĐỔI QUAN TRỌNG: Dùng 'gemini-2.5-flash' (Có trong danh sách của bạn)
-          const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
-          
-          const context = `Bạn là sinh viên FPTU. Trả lời ngắn gọn, thân thiện, hài hước. User hỏi: ${text}`;
-
-          const response = await fetch(API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ contents: [{ parts: [{ text: context }] }] })
-          });
-
-          const data = await response.json();
-          document.getElementById(typingId).remove();
-
-          if (!response.ok) throw new Error("Lỗi API");
-
-          if (data.candidates && data.candidates[0].content) {
-              const reply = data.candidates[0].content.parts[0].text;
-              box.innerHTML += `<div class="flex gap-4 animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-sparkles"></i></div><div class="bg-white border border-slate-200 p-4 rounded-3xl rounded-tl-none text-slate-700 shadow-sm max-w-[85%] leading-relaxed text-base break-words">${reply.replace(/\n/g, '<br>')}</div></div>`;
-          }
-
-      } catch (error) {
-          if(document.getElementById(typingId)) document.getElementById(typingId).remove();
-          box.innerHTML += `<div class="flex gap-4 animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-bug"></i></div><div class="bg-red-50 border border-red-200 p-4 rounded-3xl rounded-tl-none text-red-700 shadow max-w-[85%] break-words"><b>Lỗi:</b> Mạng yếu hoặc hết tiền API rồi huhu!</div></div>`;
-      }
-      box.scrollTop = box.scrollHeight;
-  }
-
-  // --- GROUP CHAT ---
-  function toggleGroupChat() {
-      const box = document.getElementById('group-chat-box');
-      if (box.classList.contains('translate-y-full')) { box.classList.remove('translate-y-full'); } else { box.classList.add('translate-y-full'); }
-  }
-  function sendGroupChat() {
-      const inp = document.getElementById('group-chat-input');
-      const txt = inp.value.trim();
-      if(!txt) return;
-      const box = document.getElementById('group-chat-msgs');
-      const div = document.createElement('div');
-      div.className = "flex justify-end animate-[slideUp_0.2s]"; // group chat outgoing container
-      div.innerHTML = `<div class="bg-indigo-600 text-white px-4 py-2 rounded-2xl rounded-tr-none text-sm max-w-[80%] shadow-sm break-words">${txt}</div>`;
-      box.appendChild(div);
-      inp.value = "";
-      box.scrollTop = box.scrollHeight;
-      
-      setTimeout(() => {
-          const replyDiv = document.createElement('div');
-          replyDiv.className = "flex justify-start animate-[slideUp_0.2s]";
-          replyDiv.innerHTML = `<div class="bg-white border border-slate-200 px-4 py-2 rounded-2xl rounded-tl-none text-sm max-w-[80%] shadow-sm break-words"><span class="text-[10px] font-bold text-indigo-600 block mb-0.5">Minh</span>Thế à? Hay quá!</div>`;
-          box.appendChild(replyDiv);
-          box.scrollTop = box.scrollHeight;
-      }, 2000);
-  }
-
-  // --- EISENHOWER MATRIX ---
-  let eisenhowerTasks = [];
-  let currentImportance = null;
-  let currentUrgency = null;
 
   function setEisenhowerImportance(isImportant) {
       currentImportance = isImportant;
-      // Update buttons
       const btn0 = document.getElementById('imp-btn-0');
       const btn1 = document.getElementById('imp-btn-1');
       if (isImportant === false) {
@@ -1214,7 +1018,6 @@ function listenToPosts() {
 
   function setEisenhowerUrgency(isUrgent) {
       currentUrgency = isUrgent;
-      // Update buttons
       const btn0 = document.getElementById('urg-btn-0');
       const btn1 = document.getElementById('urg-btn-1');
       if (isUrgent === false) {
@@ -1235,15 +1038,8 @@ function listenToPosts() {
       const taskName = nameInput.value.trim();
       const deadline = deadlineInput.value ? new Date(deadlineInput.value).getTime() : null;
       
-      if (!taskName) {
-          alert('Vui lòng nhập tên công việc!');
-          return;
-      }
-      
-      if (currentImportance === null || currentUrgency === null) {
-          alert('Vui lòng chọn mức độ quan trọng và gấp gáp!');
-          return;
-      }
+      if (!taskName) { alert('Vui lòng nhập tên công việc!'); return; }
+      if (currentImportance === null || currentUrgency === null) { alert('Vui lòng chọn mức độ quan trọng và gấp gáp!'); return; }
       
       const task = {
           id: Date.now(),
@@ -1259,21 +1055,15 @@ function listenToPosts() {
       eisenhowerTasks.push(task);
       saveEisenhowerTasks();
       
-      // Clear input
       nameInput.value = '';
       deadlineInput.value = '';
       currentImportance = null;
       currentUrgency = null;
       
-      // Reset buttons
-      document.getElementById('imp-btn-0').classList.add('border-slate-300', 'text-slate-700');
-      document.getElementById('imp-btn-0').classList.remove('bg-slate-200', 'border-slate-500', 'text-slate-800');
-      document.getElementById('imp-btn-1').classList.remove('bg-blue-100', 'border-blue-500', 'text-blue-700');
-      document.getElementById('imp-btn-1').classList.add('border-slate-300', 'text-slate-700');
-      document.getElementById('urg-btn-0').classList.add('border-slate-300', 'text-slate-700');
-      document.getElementById('urg-btn-0').classList.remove('bg-slate-200', 'border-slate-500', 'text-slate-800');
-      document.getElementById('urg-btn-1').classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
-      document.getElementById('urg-btn-1').classList.add('border-slate-300', 'text-slate-700');
+      document.getElementById('imp-btn-0').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
+      document.getElementById('imp-btn-1').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
+      document.getElementById('urg-btn-0').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
+      document.getElementById('urg-btn-1').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
       
       renderEisenhowerMatrix();
       checkDeadlines();
@@ -1287,36 +1077,23 @@ function listenToPosts() {
   }
 
   function renderEisenhowerMatrix() {
-      // Clear all quadrants
       ['quad-1', 'quad-2', 'quad-3', 'quad-4'].forEach(qid => {
           document.getElementById(qid).innerHTML = '';
       });
       
       eisenhowerTasks.forEach(task => {
           let quadId;
-          if (task.urgent && task.important) {
-              quadId = 'quad-1';
-          } else if (!task.urgent && task.important) {
-              quadId = 'quad-2';
-          } else if (task.urgent && !task.important) {
-              quadId = 'quad-3';
-          } else {
-              quadId = 'quad-4';
-          }
+          if (task.urgent && task.important) quadId = 'quad-1';
+          else if (!task.urgent && task.important) quadId = 'quad-2';
+          else if (task.urgent && !task.important) quadId = 'quad-3';
+          else quadId = 'quad-4';
           
           const taskEl = document.createElement('div');
-          taskEl.className = 'bg-white border-l-4 border-slate-400 rounded-lg p-3 flex justify-between items-start gap-2 shadow-sm hover:shadow-md transition';
-          
-          // Determine border color
-          if (quadId === 'quad-1') {
-              taskEl.classList.add('border-l-red-500', 'bg-red-50');
-          } else if (quadId === 'quad-2') {
-              taskEl.classList.add('border-l-blue-500', 'bg-blue-50');
-          } else if (quadId === 'quad-3') {
-              taskEl.classList.add('border-l-yellow-500', 'bg-yellow-50');
-          } else {
-              taskEl.classList.add('border-l-slate-400', 'bg-slate-50');
-          }
+          taskEl.className = 'bg-white border-l-4 rounded-lg p-3 flex justify-between items-start gap-2 shadow-sm hover:shadow-md transition ';
+          if (quadId === 'quad-1') taskEl.className += 'border-red-500 bg-red-50';
+          else if (quadId === 'quad-2') taskEl.className += 'border-blue-500 bg-blue-50';
+          else if (quadId === 'quad-3') taskEl.className += 'border-yellow-500 bg-yellow-50';
+          else taskEl.className += 'border-slate-400 bg-slate-50';
           
           taskEl.innerHTML = `
               <div class="flex-1">
@@ -1327,11 +1104,9 @@ function listenToPosts() {
                   <i class="fa-solid fa-trash text-sm"></i>
               </button>
           `;
-          
           document.getElementById(quadId).appendChild(taskEl);
       });
       
-      // Show empty state if no tasks
       ['quad-1', 'quad-2', 'quad-3', 'quad-4'].forEach(qid => {
           if (document.getElementById(qid).children.length === 0) {
               const emptyEl = document.createElement('div');
@@ -1342,14 +1117,112 @@ function listenToPosts() {
       });
   }
 
-  // Initialize Eisenhower on load
-  window.addEventListener('load', () => {
+  window.addEventListener('load',()=>{ 
+      renderCalcHistory(); 
+      loadEisenhowerTasks();
       renderEisenhowerMatrix();
+      requestNotificationPermission();
+      checkDeadlines();
+      setInterval(checkDeadlines, 60000);
   });
-</script>
+  
+  // --- AI CHECK & CHATBOT ---
+  async function checkPrompt(){
+      const v = document.getElementById('prompt-input').value.trim();
+      const r = document.getElementById('prompt-res');
+      if(!v) return;
+      r.innerHTML = `<span class="text-slate-400"><i class='fa-solid fa-spinner fa-spin'></i> Đang phân tích và tối ưu prompt...</span>`;
+      try {
+          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks";
+          const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+          const context = `Bạn là một chuyên gia Prompt Engineering cấp cao. Nhiệm vụ của bạn là đánh giá và tối ưu hóa câu lệnh (prompt) mà người dùng nhập vào.\nDưới đây là câu lệnh của người dùng: ${v}.\nHãy trả lời bằng mã HTML (không dùng markdown) với cấu trúc 2 phần rõ ràng:\n\nPhần 1: <b>💡 Đánh giá nhanh:</b> Đánh giá điểm mạnh, điểm yếu của prompt này (VD: thiếu ngữ cảnh, thiếu vai trò...). Trả lời thật ngắn gọn.\n\nPhần 2: <b>✨ Prompt tối ưu:</b> Viết lại một prompt hoàn chỉnh, chuyên nghiệp nhất dựa trên ý định của người dùng, áp dụng các kỹ thuật như đặt vai trò (Act as...), cung cấp context, và yêu cầu format rõ ràng.`;
+
+          const response = await fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ contents: [{ parts: [{ text: context }] }] })
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error?.message || 'Lỗi API');
+          if (data.candidates && data.candidates[0].content) {
+              const reply = data.candidates[0].content.parts[0].text;
+              r.innerHTML = reply.replace(/\n/g, '<br>');
+          } else { r.innerHTML = `<span class="text-red-600">Không nhận được phản hồi hợp lệ từ AI.</span>`; }
+      } catch (err) {
+          console.error(err);
+          r.innerHTML = `<span class="text-red-600 font-bold"><i class='fa-solid fa-triangle-exclamation'></i> Lỗi: ${err.message || 'Mất mạng hoặc API'}</span>`;
+      }
+  }
+
+  async function sendChat(optionalText = null) {
+      const inp = document.getElementById('chat-input');
+      const text = optionalText || inp.value.trim();
+      if (!text) return;
+
+      const starters = document.getElementById('chat-starters');
+      if (starters) starters.style.display = 'none';
+      const box = document.getElementById('chat-messages');
+      box.innerHTML += `<div class="flex gap-4 flex-row-reverse animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-user"></i></div><div class="bg-orange-600 text-white p-4 rounded-3xl rounded-tr-none shadow text-base max-w-[85%] break-words">${text}</div></div>`;
+      inp.value = "";
+      box.scrollTop = box.scrollHeight;
+
+      const typingId = "typing-" + Date.now();
+      const typingDiv = document.createElement('div');
+      typingDiv.id = typingId;
+      typingDiv.className = "flex gap-4 mt-2";
+      typingDiv.innerHTML = `<div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-robot"></i></div><div class="bg-white border p-4 rounded-3xl rounded-tl-none text-sm typing-indicator"><span></span><span></span><span></span></div>`;
+      box.appendChild(typingDiv);
+      box.scrollTop = box.scrollHeight;
+
+      try {
+          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks"; 
+          const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+          const context = `Bạn là sinh viên FPTU. Trả lời ngắn gọn, thân thiện, hài hước. User hỏi: ${text}`;
+
+          const response = await fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ contents: [{ parts: [{ text: context }] }] })
+          });
+          const data = await response.json();
+          document.getElementById(typingId).remove();
+          if (!response.ok) throw new Error("Lỗi API");
+          if (data.candidates && data.candidates[0].content) {
+              const reply = data.candidates[0].content.parts[0].text;
+              box.innerHTML += `<div class="flex gap-4 animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-sparkles"></i></div><div class="bg-white border border-slate-200 p-4 rounded-3xl rounded-tl-none text-slate-700 shadow-sm max-w-[85%] leading-relaxed text-base break-words">${reply.replace(/\n/g, '<br>')}</div></div>`;
+          }
+      } catch (error) {
+          if(document.getElementById(typingId)) document.getElementById(typingId).remove();
+          box.innerHTML += `<div class="flex gap-4 animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-bug"></i></div><div class="bg-red-50 border border-red-200 p-4 rounded-3xl rounded-tl-none text-red-700 shadow max-w-[85%] break-words"><b>Lỗi:</b> Mạng yếu hoặc hết tiền API rồi huhu!</div></div>`;
+      }
+      box.scrollTop = box.scrollHeight;
+  }
+
+  // --- GROUP CHAT ---
+  function toggleGroupChat() {
+      const box = document.getElementById('group-chat-box');
+      if (box.classList.contains('translate-y-full')) { box.classList.remove('translate-y-full'); } else { box.classList.add('translate-y-full'); }
+  }
+  function sendGroupChat() {
+      const inp = document.getElementById('group-chat-input');
+      const txt = inp.value.trim();
+      if(!txt) return;
+      const box = document.getElementById('group-chat-msgs');
+      const div = document.createElement('div');
+      div.className = "flex justify-end animate-[slideUp_0.2s]";
+      div.innerHTML = `<div class="bg-indigo-600 text-white px-4 py-2 rounded-2xl rounded-tr-none text-sm max-w-[80%] shadow-sm break-words">${txt}</div>`;
+      box.appendChild(div);
+      inp.value = "";
+      box.scrollTop = box.scrollHeight;
+      
+      setTimeout(() => {
+          const replyDiv = document.createElement('div');
+          replyDiv.className = "flex justify-start animate-[slideUp_0.2s]";
+          replyDiv.innerHTML = `<div class="bg-white border border-slate-200 px-4 py-2 rounded-2xl rounded-tl-none text-sm max-w-[80%] shadow-sm break-words"><span class="text-[10px] font-bold text-indigo-600 block mb-0.5">Minh</span>Thế à? Hay quá!</div>`;
+          box.appendChild(replyDiv);
+          box.scrollTop = box.scrollHeight;
+      }, 2000);
+  }
+  </script>
 </body>
 </html>
-
-
-
-
