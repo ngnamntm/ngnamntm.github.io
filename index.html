@@ -514,7 +514,28 @@
       <img src="" class="max-w-full max-h-full rounded" alt="" />
       <button class="absolute top-4 right-4 text-white text-3xl" onclick="closeImageViewer(event)">&times;</button>
   </div>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
+<script>
+// 2. KHỞI TẠO FIREBASE VỚI TÀI KHOẢN CỦA BẠN
+const firebaseConfig = {
+  apiKey: "AIzaSyCjgp2ZeF59c37xhHXjL_bA_s0mcIntTHA",
+  authDomain: "fptu-survival.firebaseapp.com",
+  projectId: "fptu-survival",
+  storageBucket: "fptu-survival.firebasestorage.app",
+  messagingSenderId: "73576526351",
+  appId: "1:73576526351:web:4294e034341470c041e97a",
+  measurementId: "G-VLEPPW72V5"
+};
+
+// Khởi tạo app
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+// ... (Phần code cũ của bạn bắt đầu từ đây: const specs = { ... })
 <script>
   // --- DATA ---
   const specs = {
@@ -669,6 +690,7 @@ document.addEventListener('keydown', e=>{
           filterFeed('local');
           // capture initial state
           saveHistory();
+        listenToPosts(); 
       } else { alert("Vui lòng điền đủ Tên và MSSV!"); }
   }
 
@@ -872,26 +894,31 @@ document.addEventListener('keydown', e=>{
   // clicking outside the image (on overlay) also closes
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
  // --- HÀM ĐĂNG BÀI LÊN FIREBASE (Đã fix lỗi storage) ---
-async function pushPost(txt, imageFile, scope='local') {
+// --- HÀM ĐĂNG BÀI LÊN FIREBASE ---
+async function pushPost(txt, imgUrl, scope='local') {
     const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
     const campus = scope === 'global' ? 'All' : currentUser.campus;
     
+    // Đổi chữ ở nút đăng để báo cho người dùng đang xử lý
     const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
     const oldBtnText = postBtn.innerText;
-    postBtn.innerText = "Đang tải ảnh lên..."; 
+    postBtn.innerText = "Đang xử lý...";
     postBtn.disabled = true;
 
     try {
         let finalImageUrl = "";
         
-        // Gọi TRỰC TIẾP firebase.storage() để triệt tiêu hoàn toàn lỗi "is not defined"
-        if(imageFile) {
-            const imageName = `posts/${Date.now()}_img`; 
-            const storageRef = firebase.storage().ref().child(imageName); 
-            await storageRef.put(imageFile); 
+        // Nếu bài viết có ảnh, đẩy ảnh lên Firebase Storage trước
+        if(imgUrl) {
+            const imageName = `posts/${Date.now()}_img.jpg`;
+            const storageRef = storage.ref().child(imageName);
+            // Upload ảnh dạng base64
+            await storageRef.putString(imgUrl, 'data_url');
+            // Lấy đường link public của ảnh sau khi up xong
             finalImageUrl = await storageRef.getDownloadURL();
         }
 
+        // Đóng gói dữ liệu bài viết
         const newPost = {
             user: currentUser.name,
             avt: avatarValue,
@@ -901,13 +928,13 @@ async function pushPost(txt, imageFile, scope='local') {
             img: finalImageUrl, 
             likes: 0,
             cmts: [],
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Lấy giờ chuẩn của máy chủ
         };
 
-        // Gọi TRỰC TIẾP firebase.firestore() cho chắc cú
-        await firebase.firestore().collection("posts").add(newPost);
+        // Bắn dữ liệu lên kho chứa 'posts' của Firestore
+        await db.collection("posts").add(newPost);
 
-        // Đăng xong thì Reset lại form
+        // Đăng xong thì dọn dẹp form (Reset UI)
         document.getElementById('post-content').value = "";
         if(document.getElementById('post-image')) {
             document.getElementById('post-image').value = "";
@@ -919,13 +946,41 @@ async function pushPost(txt, imageFile, scope='local') {
         if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
         document.getElementById('post-modal').classList.add('hidden');
 
+        // Lưu ý: Không cần gọi hàm filterFeed() ở đây nữa vì đã có hàm lắng nghe lo vụ đó!
+
     } catch (error) {
-        console.error("Lỗi chi tiết:", error);
+        console.error("Lỗi:", error);
         alert("Có lỗi xảy ra khi đăng bài: " + error.message);
     } finally {
         postBtn.innerText = oldBtnText;
         postBtn.disabled = false;
     }
+}
+  // --- HÀM LẮNG NGHE BÀI VIẾT (REAL-TIME) ---
+function listenToPosts() {
+    // Kéo dữ liệu từ 'posts', sắp xếp bài mới nhất lên đầu
+    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+        posts = []; // Xoá mảng data tĩnh cũ
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            posts.push({
+                id: doc.id, // ID thật của Firebase
+                user: data.user,
+                avt: data.avt,
+                campus: data.campus,
+                scope: data.scope,
+                content: data.content,
+                img: data.img,
+                likes: data.likes || 0,
+                cmts: data.cmts || []
+            });
+        });
+        
+        // Vẽ lại bảng tin
+        filterFeed(currentFeedType); 
+    }, (error) => {
+        console.error("Lỗi khi tải dữ liệu:", error);
+    });
 }
 
   // --- CALC & CHECK ---
@@ -1296,5 +1351,6 @@ async function pushPost(txt, imageFile, scope='local') {
 </script>
 </body>
 </html>
+
 
 
