@@ -871,24 +871,24 @@ document.addEventListener('keydown', e=>{
   }
   // clicking outside the image (on overlay) also closes
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
- async function pushPost(txt, imageFile, scope='local') {
+ // --- HÀM ĐĂNG BÀI LÊN FIREBASE (Đã fix lỗi storage) ---
+async function pushPost(txt, imageFile, scope='local') {
     const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
     const campus = scope === 'global' ? 'All' : currentUser.campus;
     
     const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
     const oldBtnText = postBtn.innerText;
-    postBtn.innerText = "Đang tải ảnh lên..."; // Báo hiệu quá trình up ảnh
+    postBtn.innerText = "Đang tải ảnh lên..."; 
     postBtn.disabled = true;
 
     try {
         let finalImageUrl = "";
         
-        // Dùng phương thức .put() để up thẳng file gốc lên Storage
+        // Gọi TRỰC TIẾP firebase.storage() để triệt tiêu hoàn toàn lỗi "is not defined"
         if(imageFile) {
-            // Thay đổi đuôi file cho an toàn
             const imageName = `posts/${Date.now()}_img`; 
-            const storageRef = storage.ref().child(imageName);
-            await storageRef.put(imageFile); // Cập nhật quan trọng nhất ở đây
+            const storageRef = firebase.storage().ref().child(imageName); 
+            await storageRef.put(imageFile); 
             finalImageUrl = await storageRef.getDownloadURL();
         }
 
@@ -904,9 +904,10 @@ document.addEventListener('keydown', e=>{
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         };
 
-        await db.collection("posts").add(newPost);
+        // Gọi TRỰC TIẾP firebase.firestore() cho chắc cú
+        await firebase.firestore().collection("posts").add(newPost);
 
-        // Reset lại form
+        // Đăng xong thì Reset lại form
         document.getElementById('post-content').value = "";
         if(document.getElementById('post-image')) {
             document.getElementById('post-image').value = "";
@@ -919,7 +920,7 @@ document.addEventListener('keydown', e=>{
         document.getElementById('post-modal').classList.add('hidden');
 
     } catch (error) {
-        console.error("Lỗi:", error);
+        console.error("Lỗi chi tiết:", error);
         alert("Có lỗi xảy ra khi đăng bài: " + error.message);
     } finally {
         postBtn.innerText = oldBtnText;
@@ -1295,4 +1296,5 @@ document.addEventListener('keydown', e=>{
 </script>
 </body>
 </html>
+
 
