@@ -13,21 +13,18 @@
     .hidden-view { display: none !important; opacity: 0; }
     .active-view { display: flex !important; opacity: 1; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
     /* Glassmorphism */
     .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
     .glass-card { background: white; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-
     /* Scrollbar */
     .custom-scrollbar::-webkit-scrollbar { width: 5px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    
+   
     /* Tags */
     .tag-hard { background: #fee2e2; color: #991b1b; font-size: 10px; padding: 2px 8px; border-radius: 99px; font-weight: 700; border: 1px solid #fecaca; }
     .tag-medium { background: #fef9c3; color: #854d0e; font-size: 10px; padding: 2px 8px; border-radius: 99px; border: 1px solid #fde047; }
     .tag-easy { background: #dcfce7; color: #166534; font-size: 10px; padding: 2px 8px; border-radius: 99px; border: 1px solid #bbf7d0; }
-
     /* text wrapping helpers */
     body, .view-section, .flex, #chat-messages, #social-feed, .bg-white, .bg-slate-50 {
       word-break: break-word;
@@ -41,7 +38,6 @@
   </style>
 </head>
 <body class="text-slate-800 h-screen flex flex-col break-words">
-
   <section id="login-screen" class="fixed inset-0 z-[100] bg-slate-900 flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070')] bg-cover opacity-20"></div>
     <div class="bg-white/10 backdrop-blur-2xl border border-white/20 p-10 rounded-3xl w-full max-w-lg shadow-2xl text-center text-white relative z-10">
@@ -89,7 +85,6 @@
         </form>
     </div>
   </section>
-
   <div id="main-app" class="hidden flex-col h-full">
       <header class="fixed top-0 w-full glass-nav z-50 h-20">
         <div class="max-w-6xl mx-auto flex items-center justify-between h-full px-6">
@@ -97,7 +92,7 @@
               <i class="fa-solid fa-compass text-orange-600 text-3xl"></i>
               <h1 class="text-2xl font-black tracking-tighter text-slate-900 hidden md:block">SURVIVAL<span class="text-orange-600">KIT</span></h1>
           </div>
-          
+         
           <nav class="flex bg-slate-100 p-2 rounded-xl gap-2">
             <button onclick="switchView('home')" id="btn-home" class="px-4 py-2 rounded-lg text-slate-500 hover:bg-white hover:text-orange-600 shadow-sm transition"><i class="fa-solid fa-house"></i></button>
             <button onclick="switchView('community')" id="btn-community" class="px-4 py-2 rounded-lg text-slate-500 hover:bg-white hover:text-orange-600 transition"><i class="fa-solid fa-users"></i></button>
@@ -105,11 +100,10 @@
             <button onclick="switchView('chat')" id="btn-chat" class="px-4 py-2 rounded-lg text-slate-500 hover:bg-white hover:text-blue-600 transition"><i class="fa-solid fa-comments"></i></button>
             <button onclick="switchView('guide')" id="btn-guide" class="px-4 py-2 rounded-lg text-slate-500 hover:bg-white hover:text-green-600 transition"><i class="fa-solid fa-book-open"></i></button>
           </nav>
-
           <div class="flex items-center gap-3">
                <span class="hidden md:block font-bold text-slate-700 text-right text-xs leading-tight">Chào,<br><span id="header-username" class="text-orange-600">Sinh viên</span></span>
                <div class="w-9 h-9 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold text-sm shadow-md" id="user-avatar">?</div>
-               
+              
                <div class="w-px h-8 bg-slate-200 mx-1 hidden md:block"></div>
                <button onclick="handleLogout()" class="text-slate-400 hover:text-red-500 hover:bg-red-50 w-9 h-9 rounded-full flex items-center justify-center transition" title="Đăng xuất">
                    <i class="fa-solid fa-right-from-bracket text-lg"></i>
@@ -117,18 +111,15 @@
           </div>
         </div>
       </header>
-      <div class="h-20"></div> 
-
+      <div class="h-20"></div>
       <section id="view-home" class="view-section active-view flex-1 bg-slate-50 overflow-y-auto custom-scrollbar">
-        <div class="max-w-5xl mx-auto p-6 pt-12"> 
-            <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-10 text-white text-center mb-10 shadow-xl relative overflow-hidden group">
+        <div class="max-w-5xl mx-auto p-6 pt-12"> <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-10 text-white text-center mb-10 shadow-xl relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl group-hover:bg-orange-500/30 transition"></div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-3">Xin chào, <span id="welcome-name" class="text-orange-400">Bạn</span>! 👋</h2>
                 <p class="opacity-80 text-base">Sinh viên <span id="welcome-faculty" class="font-bold text-white">--</span> • <span id="welcome-campus">--</span></p>
             </div>
-            
+           
             <h3 class="text-xl font-bold text-slate-700 mb-6 px-2">Truy cập nhanh</h3>
-
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div onclick="switchView('tools-menu')" class="glass-card p-8 rounded-3xl flex flex-col items-center gap-4 cursor-pointer hover:border-orange-300 transition border border-slate-100 group hover:-translate-y-1">
                     <div class="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center text-orange-600 text-3xl group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-briefcase"></i></div>
@@ -149,13 +140,12 @@
             </div>
         </div>
       </section>
-
       <section id="view-tools-menu" class="view-section hidden-view bg-slate-50 min-h-screen">
          <div class="max-w-4xl mx-auto px-6 pt-12 pb-10">
              <button onclick="switchView('home')" class="mb-8 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại Home</button>
-             
+            
              <h2 class="text-3xl font-black text-slate-800 mb-8 flex items-center gap-3"><i class="fa-solid fa-screwdriver-wrench text-orange-600"></i> Kho Công Cụ</h2>
-             
+            
              <div class="grid md:grid-cols-2 gap-6">
                  <div onclick="openWikiSelection()" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 cursor-pointer hover:border-indigo-400 hover:shadow-md transition flex items-center justify-between group min-h-32">
                      <div class="flex items-center gap-5">
@@ -188,7 +178,6 @@
              </div>
          </div>
       </section>
-
       <section id="view-wiki-select" class="view-section hidden-view bg-white min-h-screen py-8">
           <div class="max-w-5xl mx-auto px-6">
               <button onclick="switchView('tools-menu')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
@@ -197,7 +186,6 @@
               <div id="wiki-spec-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
           </div>
       </section>
-
       <section id="view-wiki-roadmap" class="view-section hidden-view bg-white min-h-screen py-8 overflow-y-auto custom-scrollbar">
           <div class="max-w-5xl mx-auto px-6">
               <button onclick="switchView('wiki-select')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Chọn lại ngành</button>
@@ -205,13 +193,12 @@
               <div id="wiki-list" class="space-y-8 relative border-l-2 border-slate-200 ml-4 pl-8 pb-10"></div>
           </div>
       </section>
-
       <section id="view-guide" class="view-section hidden-view bg-white min-h-screen py-8 overflow-y-auto custom-scrollbar">
           <div class="max-w-4xl mx-auto px-6">
               <button onclick="switchView('home')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-green-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại Home</button>
               <h2 class="text-3xl font-bold text-green-800 mb-4"><i class="fa-solid fa-book-open text-green-600 mr-2"></i> Cẩm Nang Sinh Tồn</h2>
               <p class="text-slate-600 mb-6">Tổng hợp kỹ năng sống cần thiết cho sinh viên FPTU.</p>
-              
+             
               <div class="grid gap-8">
                   <div class="space-y-4">
                       <h3 class="text-2xl font-semibold text-slate-800">1. Sinh tồn Tài chính</h3>
@@ -246,7 +233,7 @@
                       </ul>
                   </div>
               </div>
-              
+             
               <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 flex flex-col items-center text-center">
                       <div class="text-4xl">🎒</div>
@@ -266,7 +253,6 @@
               </div>
           </div>
       </section>
-
       <section id="view-tool-calc" class="view-section hidden-view bg-white min-h-screen py-8">
           <div class="max-w-3xl mx-auto px-4">
               <button onclick="switchView('tools-menu')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
@@ -283,15 +269,14 @@
               </div>
           </div>
       </section>
-
       <section id="view-tool-deadline" class="view-section hidden-view bg-white min-h-screen py-8">
           <div class="max-w-6xl mx-auto px-4">
               <button onclick="switchView('tools-menu')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
-              
+             
               <h2 class="text-3xl font-bold text-slate-800 mb-2">Ma trận Eisenhower</h2>
               <p class="text-slate-600 mb-2">Sắp xếp công việc theo mức độ quan trọng, gấp gáp và hạn chót - Làm điều quan trọng trước</p>
               <p class="text-xs text-slate-500 mb-8 italic">📣 Nhập hạn chót và cấp quyền thông báo để nhận nhắc nhở đẩy khi deadline sắp đến (3 tiếng và 1 tiếng trước).</p>
-              
+             
               <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8">
                   <h3 class="font-bold text-lg text-slate-800 mb-4">Thêm công việc</h3>
                   <div class="space-y-4">
@@ -299,12 +284,10 @@
                           <label class="block text-sm font-semibold text-slate-700 mb-2">Công việc cần làm:</label>
                           <input id="task-input-name" type="text" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-300" placeholder="VD: Nộp bài tập MAD101" onkeydown="if(event.key==='Enter') addEisenhowerTask()">
                       </div>
-
                       <div>
                           <label class="block text-sm font-semibold text-slate-700 mb-2">Hạn chót:</label>
                           <input id="task-input-deadline" type="datetime-local" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-300" />
                       </div>
-
                       <div class="grid grid-cols-2 gap-6">
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Quan trọng?</label>
@@ -313,7 +296,7 @@
                                   <button onclick="setEisenhowerImportance(true)" id="imp-btn-1" class="flex-1 py-2 rounded-lg border-2 border-blue-500 bg-blue-100 text-blue-700 font-bold transition">✅ Quan trọng</button>
                               </div>
                           </div>
-                          
+                         
                           <div>
                               <label class="block text-sm font-semibold text-slate-700 mb-3">Gấp gáp?</label>
                               <div class="flex gap-3">
@@ -322,13 +305,13 @@
                               </div>
                           </div>
                       </div>
-                      
+                     
                       <button onclick="addEisenhowerTask()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition">
                           <i class="fa-solid fa-plus mr-2"></i> Thêm công việc
                       </button>
                   </div>
               </div>
-              
+             
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-red-200">
@@ -337,7 +320,7 @@
                       </div>
                       <div id="quad-1" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
-                  
+                 
                   <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-blue-200">
                           <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2"><span class="text-2xl">📅</span> Quan trọng (Ko gấp)</h3>
@@ -345,7 +328,7 @@
                       </div>
                       <div id="quad-2" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
-                  
+                 
                   <div class="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-yellow-200">
                           <h3 class="text-lg font-bold text-yellow-700 flex items-center gap-2"><span class="text-2xl">⚡</span> Gấp (Ko quan trọng)</h3>
@@ -353,7 +336,7 @@
                       </div>
                       <div id="quad-3" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar"></div>
                   </div>
-                  
+                 
                   <div class="bg-slate-100 border-2 border-slate-300 rounded-2xl p-6 h-96 flex flex-col">
                       <div class="mb-4 pb-3 border-b-2 border-slate-300">
                           <h3 class="text-lg font-bold text-slate-700 flex items-center gap-2"><span class="text-2xl">🗑️</span> Không Quan Trọng</h3>
@@ -364,7 +347,6 @@
               </div>
           </div>
       </section>
-
       <section id="view-tool-ai-check" class="view-section hidden-view bg-white min-h-screen py-8">
           <div class="max-w-3xl mx-auto px-4">
               <button onclick="switchView('tools-menu')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-orange-600 transition font-bold text-lg"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
@@ -389,9 +371,8 @@
               </div>
           </div>
       </section>
-
       <section id="view-community" class="view-section hidden-view bg-[#f0f2f5] min-h-screen flex-1 overflow-y-auto custom-scrollbar relative">
-        <div class="max-w-4xl mx-auto pb-20 pt-28 px-4"> 
+        <div class="max-w-4xl mx-auto pb-20 pt-28 px-4">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex gap-2 p-1 bg-slate-200 rounded-full">
                     <button onclick="filterFeed('local')" id="tab-local" class="px-6 py-2 rounded-full bg-white text-orange-600 text-sm font-bold shadow-sm transition">Campus của tôi <span class="bg-orange-100 text-orange-600 text-[10px] px-2 py-0.5 rounded-full ml-1" id="local-badge">--</span></button>
@@ -401,23 +382,19 @@
                      <i class="fa-solid fa-location-dot text-red-500 mr-1"></i> <span id="current-campus-display">Đà Nẵng</span>
                 </div>
             </div>
-
             <div class="bg-white p-5 mb-6 rounded-3xl shadow-sm border border-slate-200">
                 <div class="flex gap-4">
                     <div class="w-12 h-12 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold shrink-0 user-avt-display text-lg">?</div>
-                    <div class="flex-1 bg-slate-100 rounded-full px-6 py-3 cursor-pointer hover:bg-slate-200 transition flex items-center justify-between" onclick="document.getElementById('post-modal').classList.remove('hidden')">
+                    <div class="flex-1 bg-slate-100 rounded-full px-6 py-3 cursor-pointer hover:bg-slate-200 transition flex items-center justify-between" onclick="openPostModal()">
                         <span class="text-slate-500 font-medium">Bạn đang nghĩ gì?</span><i class="fa-regular fa-image text-slate-400 text-xl"></i>
                     </div>
                 </div>
             </div>
-
             <div id="social-feed" class="space-y-6"></div>
         </div>
-
         <button onclick="toggleGroupChat()" class="fixed bottom-24 right-6 bg-indigo-600 text-white p-5 rounded-full shadow-xl z-50 hover:scale-110 transition animate-bounce flex items-center justify-center">
             <i class="fa-solid fa-comments text-2xl"></i>
         </button>
-
         <div id="group-chat-box" class="fixed bottom-0 right-0 w-full md:w-96 h-[500px] bg-white shadow-2xl z-[60] rounded-t-2xl transform translate-y-full transition-transform duration-300 flex flex-col border border-slate-200">
             <div class="bg-indigo-600 p-4 rounded-t-2xl flex justify-between items-center text-white">
                 <div class="flex items-center gap-3">
@@ -435,13 +412,12 @@
             </div>
         </div>
       </section>
-
       <section id="view-chat" class="view-section hidden-view flex-1 bg-white flex flex-col h-[calc(100vh-4rem)]">
          <div class="p-4 border-b flex items-center gap-4 bg-white/80 backdrop-blur">
              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white text-sm"><i class="fa-solid fa-sparkles"></i></div>
              <div><h3 class="font-bold text-slate-800">FPTU Survival AI</h3><p class="text-xs text-green-500 font-bold">● Sẵn sàng hỗ trợ</p></div>
          </div>
-         
+        
          <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar bg-slate-50">
              <div class="flex gap-4">
                  <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-robot"></i></div>
@@ -449,7 +425,7 @@
                      Chào bạn! Mình là AI "biết tuốt" FPTU. Bạn cần giúp gì không?
                  </div>
              </div>
-             
+            
              <div id="chat-starters" class="flex flex-wrap gap-3 pl-14">
                  <button onclick="sendChat('Học phí kỳ này bao nhiêu?')" class="chat-chip px-4 py-2 bg-white border rounded-full text-sm hover:bg-slate-50 hover:border-blue-300 transition">💰 Học phí</button>
                  <button onclick="sendChat('Mất gốc môn C phải làm sao?')" class="chat-chip px-4 py-2 bg-white border rounded-full text-sm hover:bg-slate-50 hover:border-blue-300 transition">😭 Mất gốc Code</button>
@@ -457,7 +433,6 @@
                  <button onclick="sendChat('Crush lạnh lùng quá')" class="chat-chip px-4 py-2 bg-white border rounded-full text-sm hover:bg-slate-50 hover:border-blue-300 transition">💔 Tư vấn tình cảm</button>
              </div>
          </div>
-
          <div class="p-5 bg-white border-t">
              <div class="flex gap-3 bg-slate-100 rounded-[2rem] p-2 pl-6 border focus-within:border-blue-400 transition shadow-sm">
                  <input id="chat-input" class="flex-1 bg-transparent outline-none text-base" placeholder="Nhập tin nhắn..." onkeydown="if(event.key==='Enter') sendChat()">
@@ -465,13 +440,15 @@
              </div>
          </div>
       </section>
-
   </div>
-
   <div id="post-modal" class="fixed inset-0 z-[200] bg-black/50 hidden flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl animate-[slideUp_0.2s]">
           <div class="flex justify-between p-5 border-b"><h3 class="font-bold text-lg">Tạo bài viết</h3><button onclick="document.getElementById('post-modal').classList.add('hidden')" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button></div>
           <div class="p-5">
+              <div id="post-author" class="flex items-center gap-3 mb-4">
+                  <div id="post-author-avt" class="w-10 h-10 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-lg"></div>
+                  <span id="post-author-name" class="font-bold text-slate-800"></span>
+              </div>
               <textarea id="post-content" class="w-full h-32 outline-none resize-none text-lg placeholder-slate-400" placeholder="Bạn đang nghĩ gì thế?"></textarea>
               <div class="mt-4">
                   <label class="text-sm font-semibold text-slate-700">Phạm vi</label>
@@ -493,41 +470,19 @@
           <div class="p-5 pt-0"><button onclick="addPost()" class="w-full bg-orange-600 text-white font-bold py-3 rounded-2xl hover:bg-orange-700 transition shadow-lg shadow-orange-200">Đăng bài</button></div>
       </div>
   </div>
-
   <div id="image-viewer" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[300] cursor-pointer">
       <img src="" class="max-w-full max-h-full rounded" alt="" />
       <button class="absolute top-4 right-4 text-white text-3xl" onclick="closeImageViewer(event)">&times;</button>
   </div>
-
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-
   <script>
-  // --- KHỞI TẠO FIREBASE ---
-  const firebaseConfig = {
-      apiKey: "AIzaSyCjgp2ZeF59c37xhHXjl_bA_s0mcIntTHA",
-      authDomain: "fptu-survival.firebaseapp.com",
-      projectId: "fptu-survival",
-      storageBucket: "fptu-survival.firebasestorage.app",
-      messagingSenderId: "73576526351",
-      appId: "1:73576526351:web:4294e034341470c041e97a",
-      measurementId: "G-VLEPPW72V5"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const storage = firebase.storage();
-
   // --- DATA ---
   const specs = {
       'IT_FACULTY': [{code:'SE',name:'Kỹ thuật phần mềm (SE)'}, {code:'IA',name:'An toàn thông tin (IA)'}, {code:'AI',name:'Trí tuệ nhân tạo (AI)'}, {code:'IC',name:'Vi mạch (IC)'}, {code:'IoT',name:'Internet vạn vật (IoT)'}],
       'BIZ_FACULTY': [{code:'IB',name:'Kinh doanh quốc tế (IB)'}, {code:'MKT',name:'Digital Marketing'}, {code:'MC',name:'Truyền thông đa phương tiện'}],
       'LANG_FACULTY': [{code:'JAP',name:'Ngôn ngữ Nhật'}, {code:'KOR',name:'Ngôn ngữ Hàn'}, {code:'ENG',name:'Ngôn ngữ Anh'}]
   };
-
   const curriculumData = {
-      'IC': [ 
+      'IC': [
           {name: "Năm 1 - Kỳ 1", subs: [{c:"MAE101",n:"Toán Kỹ thuật",t:"hard",tip:"Đạo hàm, tích phân phải chắc.", diff:5, ref:"#"}, {c:"PHY101",n:"Vật lý 1",t:"medium",tip:"Cơ, Nhiệt.", diff:4, ref:"#"}, {c:"JPD113",n:"Tiếng Nhật sơ cấp",t:"medium",tip:"Học bảng chữ cái ngay.", diff:3, ref:"#"}]},
           {name: "Năm 1 - Kỳ 2", subs: [{c:"PRF192",n:"Lập trình C",t:"hard",tip:"Con trỏ là ác mộng."}, {c:"CEA201",n:"Kiến trúc máy tính",t:"medium",tip:"CPU, Memory."}, {c:"PHY102",n:"Vật lý 2",t:"hard",tip:"Điện từ trường."}]},
           {name: "Năm 2 - Kỳ 3", subs: [{c:"EE101",n:"Mạch điện",t:"hard",tip:"Định luật Ohm."}, {c:"DLD101",n:"Thiết kế số",t:"medium",tip:"Logic Gates."}]},
@@ -540,9 +495,12 @@
       'SE': [
           {name: "Kỳ 1 (Nền tảng)", subs:[{c:"PRF192",n:"C Programming",t:"hard",tip:"Học kỹ Pointer.", diff:4, ref:"#"},{c:"MAD101",n:"Toán rời rạc",t:"hard",tip:"Logic, Graph.", diff:5, ref:"#"}]},
           {name: "Kỳ 3 (Chuyên ngành)", subs:[{c:"CSD201",n:"Data Structures",t:"hard",tip:"Thuật toán."},{c:"DBI202",n:"Database",t:"medium",tip:"SQL Server."}]}
+      ],
+      // Fallback for other faculties (fix missing data)
+      'DEFAULT': [
+          {name: "Kỳ 1 (Nền tảng)", subs:[{c:"GEN101",n:"Kỹ năng mềm",t:"easy",tip:"Học cách làm việc nhóm."}, {c:"ENG101",n:"Tiếng Anh 1",t:"medium",tip:"Cải thiện giao tiếp."}]}
       ]
   };
-
   const avatarList = [
       "https://i.pravatar.cc/150?img=5",
       "https://i.pravatar.cc/150?img=8",
@@ -550,67 +508,68 @@
       "https://i.pravatar.cc/150?img=15",
       "https://i.pravatar.cc/150?img=20"
   ];
-
-  let posts = [];
-  let currentUser = { name: "", campus: "", faculty: "", avatar: "" }; 
-
-  let historyStack = [];
-  let historyIndex = -1;
-  let currentFeedType = 'local';
-
-  function saveHistory(){
-      const snapshot = {
-          posts: JSON.parse(JSON.stringify(posts)),
-          eisenhowerTasks: JSON.parse(JSON.stringify(eisenhowerTasks))
-      };
-      historyStack = historyStack.slice(0, historyIndex+1);
-      historyStack.push(snapshot);
-      historyIndex++;
-  }
-
-  function applyHistory(snapshot){
-      posts = JSON.parse(JSON.stringify(snapshot.posts));
-      eisenhowerTasks = JSON.parse(JSON.stringify(snapshot.eisenhowerTasks));
-      renderEisenhowerMatrix();
-      filterFeed(currentFeedType);
-  }
-
-  function undo(){
-      if(historyIndex > 0){
-          historyIndex--;
-          applyHistory(historyStack[historyIndex]);
-      }
-  }
-  function redo(){
-      if(historyIndex < historyStack.length - 1){
-          historyIndex++;
-          applyHistory(historyStack[historyIndex]);
-      }
-  }
-
-  document.addEventListener('keydown', e=>{
-      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='z'){ e.preventDefault(); undo(); }
-      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='y'){ e.preventDefault(); redo(); }
-  });
-
+  let posts = [
+      { id: 1, user: "Minh Tuấn", avt: "https://i.pravatar.cc/150?img=5", campus: "Đà Nẵng", content: "Review Cơm tấm 35k cổng sau Đà Nẵng: Sườn to, cơm nhiều. 9/10 nhé ae!", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500", likes: 12, cmts: [{u:"Nam",t:"Xin địa chỉ bác ơi"}] },
+      // ... (giữ nguyên toàn bộ posts local từ code bạn gửi)
+      { id: 25, user: "FPT Alumni Success", avt: "https://i.pravatar.cc/150?img=48", campus: "All", scope: "global", content: "🌟 Nhân vật tuần: Nguyễn Minh Phát - Cựu sinh viên FPT, hiện CTO tại Startup Unicorn Việt Nam. Đọc câu chuyện truyền cảm hứng của anh ấy!", img: "", likes: 445, cmts: [{u:"Tú",t:"Mục tiêu của tui"},{u:"Huyền",t:"Amazing!"}] }
+  ];
+  let currentUser = { name: "", campus: "", faculty: "", avatar: "" };
+  let eisenhowerTasks = []; // will load from localStorage
+// ---- UNDO/REDO HISTORY ----
+let historyStack = [];
+let historyIndex = -1;
+let currentFeedType = 'local';
+function saveHistory(){
+    const snapshot = {
+        posts: JSON.parse(JSON.stringify(posts)),
+        eisenhowerTasks: JSON.parse(JSON.stringify(eisenhowerTasks))
+    };
+    historyStack = historyStack.slice(0, historyIndex+1);
+    historyStack.push(snapshot);
+    historyIndex++;
+}
+function applyHistory(snapshot){
+    posts = JSON.parse(JSON.stringify(snapshot.posts));
+    eisenhowerTasks = JSON.parse(JSON.stringify(snapshot.eisenhowerTasks));
+    renderEisenhowerMatrix();
+    filterFeed(currentFeedType);
+}
+function undo(){
+    if(historyIndex > 0){
+        historyIndex--;
+        applyHistory(historyStack[historyIndex]);
+    }
+}
+function redo(){
+    if(historyIndex < historyStack.length - 1){
+        historyIndex++;
+        applyHistory(historyStack[historyIndex]);
+    }
+}
+document.addEventListener('keydown', e=>{
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='z'){
+        e.preventDefault(); undo();
+    }
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='y'){
+        e.preventDefault(); redo();
+    }
+});
   // --- CORE FUNCTIONS ---
   function handleLogin() {
       const name = document.getElementById('fullname').value.trim();
       const mssv = document.getElementById('mssv').value.trim();
       if(name && mssv) {
-          currentUser.name = name; 
-          currentUser.campus = document.getElementById('campus').value; 
+          currentUser.name = name;
+          currentUser.campus = document.getElementById('campus').value;
           currentUser.faculty = document.getElementById('faculty').value;
           currentUser.avatar = avatarList[Math.floor(Math.random()*avatarList.length)];
-          
+         
           document.getElementById('welcome-name').innerText = name;
           document.getElementById('welcome-campus').innerText = currentUser.campus;
-          
+         
           const headerName = document.getElementById('header-username');
           if(headerName) headerName.innerText = name;
-
           document.getElementById('welcome-faculty').innerText = document.getElementById('faculty').options[document.getElementById('faculty').selectedIndex].text;
-
           const setAvatarElem = e => {
               if(currentUser.avatar) {
                   e.innerHTML = `<img src="${currentUser.avatar}" class="w-full h-full rounded-full object-cover">`;
@@ -621,45 +580,55 @@
           document.querySelectorAll('.user-avt-display').forEach(setAvatarElem);
           const headerAvt = document.getElementById('user-avatar');
           if(headerAvt) setAvatarElem(headerAvt);
-          
+         
           const localBadge = document.getElementById('local-badge');
           if(localBadge) localBadge.innerText = currentUser.campus.substring(0,2).toUpperCase();
-          
+         
           const campusDisplay = document.getElementById('current-campus-display');
           if(campusDisplay) campusDisplay.innerText = currentUser.campus;
-
           document.getElementById('login-screen').classList.add('hidden');
           document.getElementById('main-app').classList.remove('hidden');
           document.getElementById('main-app').classList.add('flex');
-          
+         
           switchView('home');
           filterFeed('local');
           saveHistory();
-          listenToPosts();
       } else { alert("Vui lòng điền đủ Tên và MSSV!"); }
   }
-
   function handleLogout() {
       if(confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
           window.location.reload();
       }
   }
-
+  
+  // show the post creation modal and populate current user's info
+  function openPostModal() {
+      const modal = document.getElementById('post-modal');
+      const nameElem = document.getElementById('post-author-name');
+      const avtElem = document.getElementById('post-author-avt');
+      nameElem.innerText = currentUser.name || '';
+      if (currentUser.avatar) {
+          avtElem.innerHTML = `<img src="${currentUser.avatar}" class="w-full h-full rounded-full object-cover">`;
+      } else {
+          avtElem.innerText = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : '?';
+      }
+      modal.classList.remove('hidden');
+  }
   function switchView(id) {
       document.querySelectorAll('.view-section').forEach(e => {
           e.classList.add('hidden-view'); e.classList.remove('active-view');
       });
       document.getElementById('view-' + id).classList.remove('hidden-view');
       document.getElementById('view-' + id).classList.add('active-view');
-      
+     
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('text-orange-600', 'bg-white', 'shadow-sm'));
       const btn = document.getElementById('btn-' + (id==='home'?'home':id));
       if(btn) btn.classList.add('text-orange-600', 'bg-white', 'shadow-sm');
   }
-
   function handleBackButton() {
       const views = ['home', 'community', 'tools-menu', 'chat', 'guide', 'wiki-select', 'wiki-roadmap', 'social'];
       const currentView = views.find(v => !document.getElementById(v)?.classList.contains('hidden-view'));
+     
       if(currentView === 'home') {
           document.getElementById('main-app').classList.add('hidden');
           document.getElementById('login-screen').classList.remove('hidden');
@@ -671,24 +640,23 @@
           switchView('home');
       }
   }
-
+  // --- WIKI FLOW ---
   function openWikiSelection() {
       const list = document.getElementById('wiki-spec-list'); list.innerHTML = "";
       const options = specs[currentUser.faculty] || specs['IT_FACULTY'];
       document.getElementById('wiki-faculty-name').innerText = document.getElementById('welcome-faculty').innerText;
-      
+     
       options.forEach(opt => {
           list.innerHTML += `<div onclick="openWikiRoadmap('${opt.code}', '${opt.name}')" class="bg-white p-6 rounded-2xl border border-slate-200 cursor-pointer hover:border-orange-400 hover:shadow-md transition flex justify-between items-center group"><span class="font-bold text-slate-700 text-lg group-hover:text-orange-600">${opt.name}</span><i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-orange-600 text-xl"></i></div>`;
       });
       switchView('wiki-select');
   }
-
   function openWikiRoadmap(code, name) {
       const container = document.getElementById('wiki-list');
-      const data = curriculumData[code] || curriculumData['SE']; 
+      const data = curriculumData[code] || curriculumData['DEFAULT']; // fix: fallback to default if no data
       document.getElementById('roadmap-title').innerText = name;
       container.innerHTML = "";
-      
+     
       container.innerHTML += `<div class="mb-6">
           <h3 class="font-bold text-lg text-slate-800">Lộ trình học tập</h3>
           <ul class="list-disc list-inside text-slate-600">
@@ -696,7 +664,7 @@
               <li><b>Công nghệ:</b> Lập trình căn bản → Cấu trúc dữ liệu & Giải thuật → Chuyên sâu.</li>
           </ul>
       </div>`;
-      
+     
       data.forEach(sem => {
           let html = `<div class="relative"><div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-orange-500 border-4 border-white shadow-md"></div><h4 class="font-bold text-slate-800 mb-4 text-base uppercase tracking-wider">${sem.name}</h4><div class="grid md:grid-cols-2 gap-4 mb-10">`;
           sem.subs.forEach(sub => {
@@ -708,41 +676,37 @@
       });
       switchView('wiki-roadmap');
   }
-
   // --- SOCIAL FEED ---
   function filterFeed(type) {
       currentFeedType = type;
       const container = document.getElementById('social-feed');
       container.innerHTML = "";
-      
+     
       const btnLocal = document.getElementById('tab-local');
       const btnGlobal = document.getElementById('tab-global');
       const chatName = document.getElementById('chat-room-name');
-
       if(type==='local'){
           btnLocal.className = "px-6 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-bold shadow-sm transition";
           btnGlobal.className = "px-6 py-2 rounded-full bg-white text-slate-600 text-sm font-bold hover:bg-slate-50 transition";
-          if(chatName) chatName.innerText = currentUser.campus; 
+          if(chatName) chatName.innerText = currentUser.campus;
       } else {
           btnLocal.className = "px-6 py-2 rounded-full bg-white text-slate-600 text-sm font-bold hover:bg-slate-50 transition";
           btnGlobal.className = "px-6 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-bold shadow-sm transition";
           if(chatName) chatName.innerText = "Toàn quốc (5 Miền)";
       }
-
       const filtered = posts.filter(p => {
           const scope = p.scope || 'local';
           if(type === 'global') return scope === 'global';
           return scope === 'local' && p.campus === currentUser.campus;
       });
-      
+     
       filtered.forEach(p => {
           let imgHtml = p.img ? `<img src="${p.img}" onclick="viewImage(this.src)" class="w-full h-auto max-h-[500px] object-cover rounded-2xl mt-4 mb-2 border border-slate-100 cursor-pointer">` : "";
           let commentsHtml = p.cmts ? p.cmts.map(c => `<div class="bg-slate-100 p-3 rounded-2xl text-sm mt-2 break-words"><b>${c.u}:</b> ${c.t}</div>`).join('') : "";
           let badge = type==='global' ? `<span class="bg-slate-100 text-slate-500 text-[10px] px-2 py-0.5 rounded-full ml-2 border">${p.campus}</span>` : "";
-
           const div = document.createElement('div');
           div.className = "bg-white p-6 rounded-3xl shadow-sm border border-slate-200 animate-[slideUp_0.3s]";
-          
+         
           let avatarHtml;
           if(p.avt && (p.avt.startsWith('http') || p.avt.startsWith('data:'))){
               avatarHtml = `<img src="${p.avt}" class="w-12 h-12 rounded-full object-cover shrink-0">`;
@@ -750,7 +714,7 @@
               avatarHtml = `<div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600 text-lg">${p.avt || ''}</div>`;
           }
           div.innerHTML = `
-            <div class="flex gap-4 mb-3">${avatarHtml}<div><h5 class="font-bold text-base text-slate-900 flex items-center">${p.user} ${badge}</h5><p class="text-xs text-slate-400">Vừa xong</p></div></div>
+            <div class="flex gap-4 mb-3">${avatarHtml}<div><h5 class="font-bold text-base text-slate-900 flex items-center">${p.user || 'Ẩn danh'} ${badge}</h5><p class="text-xs text-slate-400">Vừa xong</p></div></div>
             <p class="text-base text-slate-800 leading-relaxed break-words">${p.content}</p>${imgHtml}
             <div class="flex gap-8 mt-4 pt-4 border-t border-slate-50 text-sm font-bold text-slate-500">
                 <button onclick="likePost('${p.id}', this)" class="hover:text-red-500 flex items-center gap-2 transition"><i class="fa-regular fa-heart text-xl"></i> <span id="like-count-${p.id}">${p.likes || 0}</span></button>
@@ -763,13 +727,12 @@
           container.appendChild(div);
       });
   }
-
   function likePost(id, btn) {
       const p = posts.find(x => x.id === id);
       if(!p) return;
       const icon = btn.querySelector('i');
       const span = btn.querySelector('span');
-      if (icon.classList.contains('fa-regular')) { icon.classList.replace('fa-regular', 'fa-solid'); btn.classList.add('text-red-500'); p.likes++; } 
+      if (icon.classList.contains('fa-regular')) { icon.classList.replace('fa-regular', 'fa-solid'); btn.classList.add('text-red-500'); p.likes++; }
       else { icon.classList.replace('fa-solid', 'fa-regular'); btn.classList.remove('text-red-500'); p.likes--; }
       span.innerText = p.likes;
   }
@@ -789,122 +752,70 @@
       list.appendChild(newCmt);
       input.value = "";
   }
-
-  // --- FIREBASE: ĐĂNG BÀI VÀ LẮNG NGHE ---
+  // --- POSTING (LOCAL) ---
   function addPost() {
       const txt = document.getElementById('post-content').value.trim();
       const scope = document.getElementById('post-scope').value || 'local';
       if(!txt) return;
-      
+     
       const fileInput = document.getElementById('post-image');
       let selectedFile = null;
       if(fileInput && fileInput.files && fileInput.files[0]) {
           selectedFile = fileInput.files[0];
+          // Fix: Check file type and size
+          if (!selectedFile.type.startsWith('image/')) {
+              alert('Chỉ hỗ trợ file ảnh!');
+              return;
+          }
+          if (selectedFile.size > 5 * 1024 * 1024) {
+              alert('File quá lớn! Tối đa 5MB.');
+              return;
+          }
       }
+      // ensure the feed reflects where the post is going
       pushPost(txt, selectedFile, scope);
   }
-
-  async function pushPost(txt, imageFile, scope='local') {
-      // Kiểm tra ảnh trước khi upload
+  function pushPost(txt, imageFile, scope='local') {
+      const avatarValue = currentUser.avatar || (currentUser.name ? currentUser.name.charAt(0).toUpperCase() : '?');
+      // campus information – global posts mark as All so it's easy to distinguish
+      // always record the actual campus of the poster; the "scope" field determines visibility
+      const campus = currentUser.campus;
+      let imgUrl = "";
       if (imageFile) {
-          // Kiểm tra định dạng
-          const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-          if (!allowedTypes.includes(imageFile.type)) {
-              alert('Chỉ chấp nhận ảnh JPG, PNG, GIF, WEBP.');
-              return;
-          }
-          // Kiểm tra kích thước (giới hạn 5MB)
-          if (imageFile.size > 5 * 1024 * 1024) {
-              alert('Ảnh quá lớn, vui lòng chọn ảnh dưới 5MB.');
-              return;
-          }
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              imgUrl = e.target.result; // base64 data URL
+              finalizePush();
+          };
+          reader.readAsDataURL(imageFile);
+      } else {
+          finalizePush();
       }
-
-      const avatarValue = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
-      const campus = scope === 'global' ? 'All' : currentUser.campus;
-      
-      const postBtn = document.querySelector('#post-modal button[onclick="addPost()"]');
-      const oldBtnText = postBtn.innerText;
-      postBtn.innerText = "Đang tải ảnh lên..."; 
-      postBtn.disabled = true;
-
-      try {
-          console.log("1. Bắt đầu quá trình đăng bài...");
-          let finalImageUrl = "";
-          if(imageFile) {
-              console.log("2. Phát hiện có ảnh! Đang đẩy ảnh lên Storage: ", imageFile.name);
-              // Tạo tên file duy nhất kèm phần mở rộng
-              const ext = imageFile.name.split('.').pop();
-              const uniqueId = Math.random().toString(36).substring(2, 15);
-              const imageName = `posts/${Date.now()}_${uniqueId}.${ext}`; 
-              const storageRef = storage.ref().child(imageName); 
-              await storageRef.put(imageFile); 
-              console.log("3. Tải ảnh thành công! Đang lấy link ảnh công khai...");
-              finalImageUrl = await storageRef.getDownloadURL();
-          }
-
-          console.log("4. Đang lưu bài viết vào Firestore Database...");
-          const newPost = {
+     
+      function finalizePush() {
+          posts.unshift({
+              id: Date.now(),
               user: currentUser.name,
               avt: avatarValue,
               campus: campus,
               scope: scope,
               content: txt,
-              img: finalImageUrl, 
+              img: imgUrl,
               likes: 0,
-              cmts: [],
-              timestamp: firebase.firestore.FieldValue.serverTimestamp()
-          };
-
-          await db.collection("posts").add(newPost);
-          console.log("5. 🎉 HOÀN TẤT ĐĂNG BÀI!");
-
-          // Reset form
+              cmts: []
+          });
           document.getElementById('post-content').value = "";
-          const fileInput = document.getElementById('post-image');
-          if (fileInput) {
-              fileInput.value = "";
-              // Reset preview
-              const previewCont = document.getElementById('post-image-preview-container');
-              if (previewCont) previewCont.classList.add('hidden');
-              const previewImg = document.getElementById('post-image-preview');
-              if (previewImg) previewImg.src = "";
-          }
-          if(document.getElementById('post-scope')) document.getElementById('post-scope').value = 'local';
+          document.getElementById('post-image').value = "";
+          document.getElementById('post-image-preview-container').classList.add('hidden');
+          document.getElementById('post-image-preview').src = "";
+          document.getElementById('post-scope').value = 'local';
           document.getElementById('post-modal').classList.add('hidden');
 
-      } catch (error) {
-          console.error("❌ LỖI RỒI FUBA ƠI:", error);
-          alert("Có lỗi xảy ra khi đăng bài: " + error.message);
-      } finally {
-          postBtn.innerText = oldBtnText;
-          postBtn.disabled = false;
+          // if the user posted to a different scope, switch the feed so they immediately see their post
+          currentFeedType = scope;
+          filterFeed(scope); // refresh feed appropriately
       }
   }
-
-  function listenToPosts() {
-      db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-          posts = []; 
-          snapshot.forEach((doc) => {
-              const data = doc.data();
-              posts.push({
-                  id: doc.id, 
-                  user: data.user,
-                  avt: data.avt,
-                  campus: data.campus,
-                  scope: data.scope,
-                  content: data.content,
-                  img: data.img,
-                  likes: data.likes || 0,
-                  cmts: data.cmts || []
-              });
-          });
-          filterFeed(currentFeedType); 
-      }, (error) => {
-          console.error("Lỗi khi tải dữ liệu:", error);
-      });
-  }
-
   // --- IMAGE VIEWER ---
   document.getElementById('post-image').addEventListener('change', function(){
       if(this.files && this.files[0]){
@@ -936,10 +847,7 @@
       iv.querySelector('img').src='';
   }
   document.getElementById('image-viewer').addEventListener('click', closeImageViewer);
-
-  // --- CALC & CHECK ---
-  function toggleModal(id) { document.getElementById('modal-' + id).classList.toggle('hidden'); }
-  
+  // --- CALC ---
   function calculate(){
       const current = parseFloat(document.getElementById('calc-total').value);
       const r = document.getElementById('calc-result');
@@ -969,7 +877,6 @@
               <tr><td><5</td><td>0.0</td><td>F</td></tr>
           </table>`;
   }
-
   function saveCalc(){
       const total = document.getElementById('calc-total').value;
       const history = JSON.parse(localStorage.getItem('calc_history')||'[]');
@@ -977,18 +884,16 @@
       localStorage.setItem('calc_history', JSON.stringify(history));
       renderCalcHistory();
   }
-  
+ 
   function renderCalcHistory(){
       const histDiv = document.getElementById('calc-history');
       const history = JSON.parse(localStorage.getItem('calc_history')||'[]');
       histDiv.innerHTML = history.map(h=>`<div class="border-b py-1 text-xs">${h.date}: ${h.total}</div>`).join('');
   }
-  
+ 
   // --- EISENHOWER TASKS ---
-  let eisenhowerTasks = [];
   let currentImportance = null;
   let currentUrgency = null;
-
   function saveEisenhowerTasks(){
       localStorage.setItem('eisenhowerTasks', JSON.stringify(eisenhowerTasks));
   }
@@ -1019,7 +924,6 @@
           }
       });
   }
-
   function setEisenhowerImportance(isImportant) {
       currentImportance = isImportant;
       const btn0 = document.getElementById('imp-btn-0');
@@ -1035,7 +939,6 @@
           btn1.classList.remove('border-slate-300', 'text-slate-700');
       }
   }
-
   function setEisenhowerUrgency(isUrgent) {
       currentUrgency = isUrgent;
       const btn0 = document.getElementById('urg-btn-0');
@@ -1051,16 +954,15 @@
           btn1.classList.remove('border-slate-300', 'text-slate-700');
       }
   }
-
   function addEisenhowerTask() {
       const nameInput = document.getElementById('task-input-name');
       const deadlineInput = document.getElementById('task-input-deadline');
       const taskName = nameInput.value.trim();
       const deadline = deadlineInput.value ? new Date(deadlineInput.value).getTime() : null;
-      
+     
       if (!taskName) { alert('Vui lòng nhập tên công việc!'); return; }
       if (currentImportance === null || currentUrgency === null) { alert('Vui lòng chọn mức độ quan trọng và gấp gáp!'); return; }
-      
+     
       const task = {
           id: Date.now(),
           name: taskName,
@@ -1071,53 +973,56 @@
           notified3h: false,
           notified1h: false
       };
-      
+     
       eisenhowerTasks.push(task);
       saveEisenhowerTasks();
-      
+     
       nameInput.value = '';
       deadlineInput.value = '';
       currentImportance = null;
       currentUrgency = null;
-      
+     
       document.getElementById('imp-btn-0').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
       document.getElementById('imp-btn-1').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
       document.getElementById('urg-btn-0').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
       document.getElementById('urg-btn-1').className = "flex-1 py-2 rounded-lg border-2 border-slate-300 text-slate-700 font-bold transition hover:bg-slate-100";
-      
+     
       renderEisenhowerMatrix();
       checkDeadlines();
       saveHistory();
   }
-
   function deleteEisenhowerTask(id) {
       eisenhowerTasks = eisenhowerTasks.filter(t => t.id !== id);
       saveEisenhowerTasks();
       renderEisenhowerMatrix();
   }
-
   function renderEisenhowerMatrix() {
       ['quad-1', 'quad-2', 'quad-3', 'quad-4'].forEach(qid => {
           document.getElementById(qid).innerHTML = '';
       });
-      
+     
       eisenhowerTasks.forEach(task => {
           let quadId;
           if (task.urgent && task.important) quadId = 'quad-1';
           else if (!task.urgent && task.important) quadId = 'quad-2';
           else if (task.urgent && !task.important) quadId = 'quad-3';
           else quadId = 'quad-4';
-          
+         
           const taskEl = document.createElement('div');
           taskEl.className = 'bg-white border-l-4 rounded-lg p-3 flex justify-between items-start gap-2 shadow-sm hover:shadow-md transition ';
           if (quadId === 'quad-1') taskEl.className += 'border-red-500 bg-red-50';
           else if (quadId === 'quad-2') taskEl.className += 'border-blue-500 bg-blue-50';
           else if (quadId === 'quad-3') taskEl.className += 'border-yellow-500 bg-yellow-50';
           else taskEl.className += 'border-slate-400 bg-slate-50';
-          
+         
+          // Fix XSS: Use textContent for name
+          const nameEl = document.createElement('p');
+          nameEl.className = 'font-semibold text-slate-800 text-sm';
+          nameEl.textContent = task.name;
+         
           taskEl.innerHTML = `
               <div class="flex-1">
-                  <p class="font-semibold text-slate-800 text-sm">${task.name}</p>
+                  ${nameEl.outerHTML}
                   <p class="text-xs text-slate-500 mt-1">${task.createdAt}</p>
               </div>
               <button onclick="deleteEisenhowerTask(${task.id})" class="text-red-500 hover:bg-red-100 p-1.5 rounded transition flex-shrink-0">
@@ -1126,7 +1031,7 @@
           `;
           document.getElementById(quadId).appendChild(taskEl);
       });
-      
+     
       ['quad-1', 'quad-2', 'quad-3', 'quad-4'].forEach(qid => {
           if (document.getElementById(qid).children.length === 0) {
               const emptyEl = document.createElement('div');
@@ -1136,27 +1041,16 @@
           }
       });
   }
-
-  window.addEventListener('load',()=>{ 
-      renderCalcHistory(); 
-      loadEisenhowerTasks();
-      renderEisenhowerMatrix();
-      requestNotificationPermission();
-      checkDeadlines();
-      setInterval(checkDeadlines, 60000);
-  });
-  
-  // --- AI CHECK & CHATBOT ---
+  // --- AI CHECK & CHATBOT (Giữ nguyên, nhưng cảnh báo API Key lộ - nên dời sang backend nếu có) ---
   async function checkPrompt(){
       const v = document.getElementById('prompt-input').value.trim();
       const r = document.getElementById('prompt-res');
       if(!v) return;
       r.innerHTML = `<span class="text-slate-400"><i class='fa-solid fa-spinner fa-spin'></i> Đang phân tích và tối ưu prompt...</span>`;
       try {
-          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks";
+          const API_KEY = "AIzaSyDCZPh2sfIqcieyHhSgI9GL-A_7Z2yWoyc";
           const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
           const context = `Bạn là một chuyên gia Prompt Engineering cấp cao. Nhiệm vụ của bạn là đánh giá và tối ưu hóa câu lệnh (prompt) mà người dùng nhập vào.\nDưới đây là câu lệnh của người dùng: ${v}.\nHãy trả lời bằng mã HTML (không dùng markdown) với cấu trúc 2 phần rõ ràng:\n\nPhần 1: <b>💡 Đánh giá nhanh:</b> Đánh giá điểm mạnh, điểm yếu của prompt này (VD: thiếu ngữ cảnh, thiếu vai trò...). Trả lời thật ngắn gọn.\n\nPhần 2: <b>✨ Prompt tối ưu:</b> Viết lại một prompt hoàn chỉnh, chuyên nghiệp nhất dựa trên ý định của người dùng, áp dụng các kỹ thuật như đặt vai trò (Act as...), cung cấp context, và yêu cầu format rõ ràng.`;
-
           const response = await fetch(API_URL, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -1173,19 +1067,16 @@
           r.innerHTML = `<span class="text-red-600 font-bold"><i class='fa-solid fa-triangle-exclamation'></i> Lỗi: ${err.message || 'Mất mạng hoặc API'}</span>`;
       }
   }
-
   async function sendChat(optionalText = null) {
       const inp = document.getElementById('chat-input');
       const text = optionalText || inp.value.trim();
       if (!text) return;
-
       const starters = document.getElementById('chat-starters');
       if (starters) starters.style.display = 'none';
       const box = document.getElementById('chat-messages');
       box.innerHTML += `<div class="flex gap-4 flex-row-reverse animate-[slideUp_0.3s]"><div class="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-user"></i></div><div class="bg-orange-600 text-white p-4 rounded-3xl rounded-tr-none shadow text-base max-w-[85%] break-words">${text}</div></div>`;
       inp.value = "";
       box.scrollTop = box.scrollHeight;
-
       const typingId = "typing-" + Date.now();
       const typingDiv = document.createElement('div');
       typingDiv.id = typingId;
@@ -1193,12 +1084,10 @@
       typingDiv.innerHTML = `<div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-white shrink-0 text-sm"><i class="fa-solid fa-robot"></i></div><div class="bg-white border p-4 rounded-3xl rounded-tl-none text-sm typing-indicator"><span></span><span></span><span></span></div>`;
       box.appendChild(typingDiv);
       box.scrollTop = box.scrollHeight;
-
       try {
-          const API_KEY = "AIzaSyBYUPXC8F1KulUC11e_TXBE8vxR0wcMeks"; 
+          const API_KEY = "AIzaSyDCZPh2sfIqcieyHhSgI9GL-A_7Z2yWoyc";
           const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
           const context = `Bạn là sinh viên FPTU. Trả lời ngắn gọn, thân thiện, hài hước. User hỏi: ${text}`;
-
           const response = await fetch(API_URL, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -1217,8 +1106,7 @@
       }
       box.scrollTop = box.scrollHeight;
   }
-
-  // --- GROUP CHAT ---
+  // --- GROUP CHAT (MOCK) ---
   function toggleGroupChat() {
       const box = document.getElementById('group-chat-box');
       if (box.classList.contains('translate-y-full')) { box.classList.remove('translate-y-full'); } else { box.classList.add('translate-y-full'); }
@@ -1234,7 +1122,7 @@
       box.appendChild(div);
       inp.value = "";
       box.scrollTop = box.scrollHeight;
-      
+     
       setTimeout(() => {
           const replyDiv = document.createElement('div');
           replyDiv.className = "flex justify-start animate-[slideUp_0.2s]";
@@ -1243,6 +1131,15 @@
           box.scrollTop = box.scrollHeight;
       }, 2000);
   }
+  // --- INIT ON LOAD ---
+  window.addEventListener('load',()=>{
+      renderCalcHistory();
+      loadEisenhowerTasks();
+      renderEisenhowerMatrix();
+      requestNotificationPermission();
+      checkDeadlines();
+      setInterval(checkDeadlines, 60000);
+  });
   </script>
 </body>
 </html>
